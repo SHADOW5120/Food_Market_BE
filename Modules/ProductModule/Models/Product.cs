@@ -20,7 +20,7 @@ namespace Food_Market_BE.Modules.ProductModule.Models
         public string CategoryId { get; set; } = default!;
 
         [BsonRepresentation(BsonType.ObjectId)]
-        public string SellerId { get; set; } = default!;
+        public string StoreId { get; set; } = default!;
 
         public bool IsAvailable { get; set; } = true;
         public bool IsDeleted { get; set; } = false;

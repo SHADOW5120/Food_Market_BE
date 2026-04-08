@@ -28,7 +28,6 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
         public async Task<IActionResult> GetProductById(string id)
         {
             var result = await _productService.GetByIdAsync(id);
-
             if (result == null)
                 return NotFound(new { message = "Product not found" });
 
@@ -39,10 +38,8 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
         {
-            var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (string.IsNullOrEmpty(sellerId))
-                return Unauthorized(new { message = "Unauthorized" });
+            var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                          ?? throw new Exception("Unauthorized");
 
             var result = await _productService.CreateAsync(sellerId, request);
             return Ok(result);
@@ -52,10 +49,8 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody] UpdateProductRequest request)
         {
-            var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (string.IsNullOrEmpty(sellerId))
-                return Unauthorized(new { message = "Unauthorized" });
+            var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                          ?? throw new Exception("Unauthorized");
 
             var success = await _productService.UpdateAsync(sellerId, id, request);
 
@@ -69,10 +64,8 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (string.IsNullOrEmpty(sellerId))
-                return Unauthorized(new { message = "Unauthorized" });
+            var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                          ?? throw new Exception("Unauthorized");
 
             var success = await _productService.DeleteAsync(sellerId, id);
 
@@ -86,10 +79,8 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
         [HttpPatch("{id}/toggle-availability")]
         public async Task<IActionResult> ToggleAvailability(string id)
         {
-            var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (string.IsNullOrEmpty(sellerId))
-                return Unauthorized(new { message = "Unauthorized" });
+            var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier)
+                          ?? throw new Exception("Unauthorized");
 
             var success = await _productService.ToggleAvailabilityAsync(sellerId, id);
 

@@ -23,16 +23,24 @@ using Food_Market_BE.Modules.ReviewModule.Repositories.Implementations;
 using Food_Market_BE.Modules.ReviewModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.ReviewModule.Services.Implementations;
 using Food_Market_BE.Modules.ReviewModule.Services.Interfaces;
+using Food_Market_BE.Modules.StoreModule.Repositories.Implementations;
+using Food_Market_BE.Modules.StoreModule.Repositories.Interfaces;
+using Food_Market_BE.Modules.StoreModule.Services.Implementations;
+using Food_Market_BE.Modules.StoreModule.Services.Interfaces;
 using Food_Market_BE.Modules.VoucherModule.Repositories.Implementations;
 using Food_Market_BE.Modules.VoucherModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.VoucherModule.Services.Implementations;
 using Food_Market_BE.Modules.VoucherModule.Services.Interfaces;
 using Food_Market_BE.Shared.Database;
+using Food_Market_BE.Shared.Extensions;
 using Food_Market_BE.Shared.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// JWT authentication
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
 // Mongo builder
 builder.Services.AddSingleton<MongoDbContext>();
@@ -47,6 +55,10 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddSingleton<PasswordHasher>();
 builder.Services.AddSingleton<JwtHelper>();
 builder.Services.AddSingleton<TokenGenerator>();
+
+// Store
+builder.Services.AddScoped<IStoreRepository, StoreRepository>();
+builder.Services.AddScoped<IStoreService, StoreService>();
 
 // Product
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -82,7 +94,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFE", policy =>
     {
         policy
-            .WithOrigins("http://localhost:3000") // Next.js
+            .WithOrigins(
+                "http://localhost:3000"  // FE dev HTTP
+            )
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
@@ -96,7 +110,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseMiddleware<ExceptionMiddleware>();
+app.UseCustomMiddleware();
 
 app.UseCors("AllowFE");
 
@@ -109,6 +123,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

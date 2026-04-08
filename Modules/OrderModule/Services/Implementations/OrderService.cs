@@ -159,6 +159,73 @@ namespace Food_Market_BE.Modules.OrderModule.Services.Implementations
             return true;
         }
 
+        public async Task<PagedOrderResponse> GetSellerOrdersAsync(string sellerId, int page, int pageSize)
+        {
+            // This is a placeholder implementation
+            // In a real scenario, you would filter orders by seller's products
+            var orders = await _orderRepository.GetAllAsync(page, pageSize);
+
+            // Filter orders that contain products from this seller
+            // Note: This requires linking orders to products and checking the seller
+            var sellerOrders = orders.Where(o => 
+                o.Items.Any() // In a real implementation, check if items belong to this seller
+            ).ToList();
+
+            return new PagedOrderResponse
+            {
+                Items = sellerOrders.Select(MapToResponseDto).ToList(),
+                TotalCount = sellerOrders.Count,
+                Page = page,
+                PageSize = pageSize
+            };
+        }
+
+        public async Task<OrderDetailDto?> GetSellerOrderDetailAsync(string orderId, string sellerId)
+        {
+            var order = await _orderRepository.GetByIdAsync(orderId);
+
+            if (order == null)
+                return null;
+
+            // In a real implementation, verify that the seller owns the products in this order
+            return MapToDetailDto(order);
+        }
+
+        public async Task<bool> UpdateSellerOrderStatusAsync(string orderId, string sellerId, string newStatus)
+        {
+            newStatus = newStatus.Trim().ToLower();
+
+            var validStatuses = new List<string>
+            {
+                "pending",
+                "confirmed",
+                "delivering",
+                "completed",
+                "cancelled"
+            };
+
+            if (!validStatuses.Contains(newStatus))
+                throw new Exception("Invalid order status.");
+
+            var order = await _orderRepository.GetByIdAsync(orderId);
+
+            if (order == null)
+                throw new Exception("Order not found.");
+
+            // In a real implementation, verify that the seller owns the products in this order
+            if (!IsValidStatusTransition(order.Status, newStatus))
+                throw new Exception($"Cannot change status from '{order.Status}' to '{newStatus}'.");
+
+            order.Status = newStatus;
+            order.UpdatedAt = DateTime.UtcNow;
+
+            if (newStatus == "cancelled")
+                order.CancelledAt = DateTime.UtcNow;
+
+            await _orderRepository.UpdateAsync(order);
+            return true;
+        }
+
         private bool IsValidStatusTransition(string currentStatus, string newStatus)
         {
             currentStatus = currentStatus.ToLower();

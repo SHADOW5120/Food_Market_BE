@@ -155,6 +155,15 @@ namespace Food_Market_BE.Modules.VoucherModule.Services.Implementations
             return true;
         }
 
+        public async Task<VoucherDto?> GetVoucherByCodeAsync(string code)
+        {
+            var voucher = await _voucherRepository.GetVoucherByCodeAsync(code);
+            if (voucher == null)
+                return null;
+
+            return MapToDto(voucher);
+        }
+
         private static VoucherDto MapToDto(Voucher voucher)
         {
             return new VoucherDto

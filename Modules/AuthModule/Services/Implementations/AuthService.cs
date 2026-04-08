@@ -2,7 +2,7 @@
 using Food_Market_BE.Modules.AuthModule.DTOs;
 using Food_Market_BE.Modules.AuthModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.AuthModule.Services.Interfaces;
-using Microsoft.AspNetCore.Identity;
+using Food_Market_BE.Shared.Exceptions;
 using Food_Market_BE.Modules.AuthModule.Helpers;
 
 namespace Food_Market_BE.Modules.AuthModule.Services.Implementations
@@ -36,7 +36,7 @@ namespace Food_Market_BE.Modules.AuthModule.Services.Implementations
         {
             var exist = await _userRepo.GetByEmailAsync(req.Email);
             if (exist != null)
-                throw new Exception("Email already exists");
+                throw new AppException("Email already exists", 400);
 
             var user = new User
             {
@@ -53,7 +53,7 @@ namespace Food_Market_BE.Modules.AuthModule.Services.Implementations
             var user = await _userRepo.GetByEmailAsync(req.Email);
 
             if (user == null || !_hasher.Verify(req.Password, user.PasswordHash))
-                throw new Exception("Invalid credentials");
+                throw new AppException("Invalid credentials", 401);
 
             var access = _jwt.GenerateToken(user.Id, user.Email, user.Role);
             var refresh = _token.Generate();
@@ -78,7 +78,7 @@ namespace Food_Market_BE.Modules.AuthModule.Services.Implementations
             var token = await _refreshRepo.GetAsync(refreshToken);
 
             if (token == null || token.IsRevoked || token.ExpiresAt < DateTime.UtcNow)
-                throw new Exception("Invalid refresh token");
+                throw new AppException("Invalid refresh token", 401);
 
             var user = await _userRepo.GetByIdAsync(token.UserId);
 
@@ -95,7 +95,7 @@ namespace Food_Market_BE.Modules.AuthModule.Services.Implementations
         public async Task ForgotPasswordAsync(string email)
         {
             var user = await _userRepo.GetByEmailAsync(email);
-            if (user == null) return;
+            if (user == null) return; // không báo lỗi để tránh lộ email
 
             var token = _token.Generate();
 
@@ -105,6 +105,8 @@ namespace Food_Market_BE.Modules.AuthModule.Services.Implementations
                 Token = token,
                 ExpiresAt = DateTime.UtcNow.AddHours(1)
             });
+
+            // TODO: Gửi email chứa token (bạn thêm phần này)
         }
 
         public async Task ResetPasswordAsync(ResetPasswordRequest req)
@@ -112,7 +114,7 @@ namespace Food_Market_BE.Modules.AuthModule.Services.Implementations
             var token = await _resetRepo.GetAsync(req.Token);
 
             if (token == null || token.Used || token.ExpiresAt < DateTime.UtcNow)
-                throw new Exception("Invalid token");
+                throw new AppException("Invalid or expired token", 400);
 
             var user = await _userRepo.GetByIdAsync(token.UserId);
 

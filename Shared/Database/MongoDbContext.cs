@@ -1,6 +1,4 @@
-﻿using Food_Market_BE.Modules.AuthModule.Models;
-using Food_Market_BE.Modules.ProductModule.Models;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 
 namespace Food_Market_BE.Shared.Database
 {
@@ -10,8 +8,8 @@ namespace Food_Market_BE.Shared.Database
 
         public MongoDbContext(IConfiguration config)
         {
-            var client = new MongoClient(config["MongoDB:ConnectionString"]);
-            _db = client.GetDatabase(config["MongoDB:Database"]);
+            var client = new MongoClient(config["MongoDb:ConnectionString"]);
+            _db = client.GetDatabase(config["MongoDb:DatabaseName"]);
         }
 
         public IMongoCollection<T> GetCollection<T>(string name)

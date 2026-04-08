@@ -23,13 +23,7 @@ namespace Food_Market_BE.Modules.CartModule.Controllers
         {
             var userId = GetUserId();
             var result = await _cartService.GetCartAsync(userId);
-
-            return Ok(new
-            {
-                success = true,
-                message = "Cart retrieved successfully.",
-                data = result
-            });
+            return Ok(result);
         }
 
         [HttpPost]
@@ -37,13 +31,7 @@ namespace Food_Market_BE.Modules.CartModule.Controllers
         {
             var userId = GetUserId();
             var result = await _cartService.AddToCartAsync(userId, request);
-
-            return Ok(new
-            {
-                success = true,
-                message = "Added to cart successfully.",
-                data = result
-            });
+            return Ok(result);
         }
 
         [HttpPut("{productId}")]
@@ -51,13 +39,7 @@ namespace Food_Market_BE.Modules.CartModule.Controllers
         {
             var userId = GetUserId();
             var result = await _cartService.UpdateCartItemAsync(userId, productId, request);
-
-            return Ok(new
-            {
-                success = true,
-                message = "Cart item updated successfully.",
-                data = result
-            });
+            return Ok(result);
         }
 
         [HttpDelete("{productId}")]
@@ -65,13 +47,7 @@ namespace Food_Market_BE.Modules.CartModule.Controllers
         {
             var userId = GetUserId();
             var result = await _cartService.RemoveItemAsync(userId, productId);
-
-            return Ok(new
-            {
-                success = true,
-                message = "Item removed from cart successfully.",
-                data = result
-            });
+            return Ok(result);
         }
 
         [HttpDelete]
@@ -79,13 +55,7 @@ namespace Food_Market_BE.Modules.CartModule.Controllers
         {
             var userId = GetUserId();
             var result = await _cartService.ClearCartAsync(userId);
-
-            return Ok(new
-            {
-                success = true,
-                message = "Cart cleared successfully.",
-                data = result
-            });
+            return Ok(result);
         }
 
         [HttpPost("checkout")]
@@ -93,12 +63,7 @@ namespace Food_Market_BE.Modules.CartModule.Controllers
         {
             var userId = GetUserId();
             var result = await _cartService.CheckoutAsync(userId, request);
-
-            return Ok(new
-            {
-                success = true,
-                message = result
-            });
+            return Ok(result);
         }
 
         private string GetUserId()

@@ -18,16 +18,16 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCategories()
         {
-            var result = await _categoryService.GetAllAsync();
-            return Ok(result);
+            var categories = await _categoryService.GetAllAsync();
+            return Ok(categories);
         }
 
         [Authorize(Roles = "Seller")]
         [HttpPost]
         public async Task<IActionResult> CreateCategory([FromBody] string name)
         {
-            var result = await _categoryService.CreateAsync(name);
-            return Ok(result);
+            var category = await _categoryService.CreateAsync(name);
+            return Ok(category);
         }
     }
 }

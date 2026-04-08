@@ -81,6 +81,69 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             };
         }
 
+        public async Task<PagedProductResponse> GetSellerProductsAsync(string sellerId, GetProductsQueryDto query)
+        {
+            var products = await _productRepository.GetAllAsync();
+
+            // Filter by seller
+            products = products
+                .Where(x => x.StoreId == sellerId && !x.IsDeleted)
+                .ToList();
+
+            if (!string.IsNullOrWhiteSpace(query.CategoryId))
+            {
+                products = products
+                    .Where(x => x.CategoryId == query.CategoryId)
+                    .ToList();
+            }
+
+            if (query.MinPrice.HasValue)
+            {
+                products = products
+                    .Where(x => x.Price >= query.MinPrice.Value)
+                    .ToList();
+            }
+
+            if (query.MaxPrice.HasValue)
+            {
+                products = products
+                    .Where(x => x.Price <= query.MaxPrice.Value)
+                    .ToList();
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.Search))
+            {
+                products = products
+                    .Where(x => x.Name.ToLower().Contains(query.Search.ToLower()))
+                    .ToList();
+            }
+
+            var sortedProducts = ProductSortHelper.ApplySort(products, query.Sort).ToList();
+
+            var total = sortedProducts.Count;
+
+            var pagedItems = sortedProducts
+                .Skip((query.Page - 1) * query.PageSize)
+                .Take(query.PageSize)
+                .Select(x => new ProductDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = x.Price,
+                    ImageUrl = x.ImageUrl,
+                    IsAvailable = x.IsAvailable
+                })
+                .ToList();
+
+            return new PagedProductResponse
+            {
+                Items = pagedItems,
+                Total = total,
+                Page = query.Page,
+                PageSize = query.PageSize
+            };
+        }
+
         public async Task<ProductDetailDto?> GetByIdAsync(string id)
         {
             var product = await _productRepository.GetByIdAsync(id);
@@ -126,7 +189,7 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
                 Price = request.Price,
                 ImageUrl = request.ImageUrl,
                 CategoryId = request.CategoryId,
-                SellerId = sellerId,
+                StoreId = sellerId,
                 IsAvailable = true,
                 IsDeleted = false,
                 CreatedAt = DateTime.UtcNow,
@@ -159,7 +222,7 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             if (product == null || product.IsDeleted)
                 return false;
 
-            if (product.SellerId != sellerId)
+            if (product.StoreId != sellerId)
                 return false;
 
             if (string.IsNullOrWhiteSpace(request.Name))
@@ -190,7 +253,7 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             if (product == null || product.IsDeleted)
                 return false;
 
-            if (product.SellerId != sellerId)
+            if (product.StoreId != sellerId)
                 return false;
 
             product.IsDeleted = true;
@@ -207,7 +270,7 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             if (product == null || product.IsDeleted)
                 return false;
 
-            if (product.SellerId != sellerId)
+            if (product.StoreId != sellerId)
                 return false;
 
             product.IsAvailable = !product.IsAvailable;

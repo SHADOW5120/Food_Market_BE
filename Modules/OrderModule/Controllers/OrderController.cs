@@ -21,88 +21,45 @@ namespace Food_Market_BE.Modules.OrderModule.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderRequest request)
         {
-            try
-            {
-                var userId = GetUserId();
-                var result = await _orderService.CreateOrderAsync(request, userId);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+            var userId = GetUserId();
+            var result = await _orderService.CreateOrderAsync(request, userId);
+            return Ok(result);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetUserOrders([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
-            try
-            {
-                var userId = GetUserId();
-                var result = await _orderService.GetUserOrdersAsync(userId, page, pageSize);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+            var userId = GetUserId();
+            var result = await _orderService.GetUserOrdersAsync(userId, page, pageSize);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrderDetail(string id)
         {
-            try
-            {
-                var userId = GetUserId();
-                var result = await _orderService.GetOrderDetailAsync(id, userId);
+            var userId = GetUserId();
+            var result = await _orderService.GetOrderDetailAsync(id, userId);
 
-                if (result == null)
-                    return NotFound(new { message = "Order not found." });
+            if (result == null)
+                return NotFound();
 
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(403, new { message = ex.Message });
-            }
+            return Ok(result);
         }
 
         [HttpPut("{id}/cancel")]
         public async Task<IActionResult> CancelOrder(string id)
         {
-            try
-            {
-                var userId = GetUserId();
-                var success = await _orderService.CancelOrderAsync(id, userId);
-
-                if (!success)
-                    return BadRequest(new { message = "Cancel failed." });
-
-                return Ok(new { message = "Order cancelled successfully." });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+            var userId = GetUserId();
+            var success = await _orderService.CancelOrderAsync(id, userId);
+            return Ok(new { cancelled = success });
         }
 
         [HttpPut("{id}/status")]
         [Authorize(Roles = "seller,admin")]
         public async Task<IActionResult> UpdateOrderStatus(string id, [FromBody] UpdateOrderStatusRequest request)
         {
-            try
-            {
-                var success = await _orderService.UpdateOrderStatusAsync(id, request.NewStatus);
-
-                if (!success)
-                    return BadRequest(new { message = "Update status failed." });
-
-                return Ok(new { message = "Order status updated successfully." });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+            var success = await _orderService.UpdateOrderStatusAsync(id, request.NewStatus);
+            return Ok(new { updated = success });
         }
 
         private string GetUserId()
