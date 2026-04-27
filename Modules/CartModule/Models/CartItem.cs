@@ -1,25 +1,32 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Food_Market_BE.Modules.CartModule.Models
 {
     public class CartItem
     {
-        [BsonElement("productId")]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; } = default!;
+
+        [BsonRepresentation(BsonType.ObjectId)]
         public string ProductId { get; set; } = default!;
 
-        [BsonElement("productName")]
         public string ProductName { get; set; } = default!;
 
-        [BsonElement("productImage")]
         public string? ProductImage { get; set; }
 
-        [BsonElement("price")]
+        // Giá gốc của món (không tính option)
         public decimal Price { get; set; }
 
-        [BsonElement("quantity")]
         public int Quantity { get; set; }
 
-        [BsonElement("subtotal")]
+        // Danh sách option đã chọn
+        public List<CartItemOpt> Options { get; set; } = new();
+
+        // Tổng tiền của item (base + options) * quantity
         public decimal Subtotal { get; set; }
+
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }

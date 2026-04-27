@@ -3,7 +3,7 @@ using Food_Market_BE.Modules.FavoriteModule.Helpers;
 using Food_Market_BE.Modules.FavoriteModule.Models;
 using Food_Market_BE.Modules.FavoriteModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.FavoriteModule.Services.Interfaces;
-using Food_Market_BE.Modules.ProductModule.Models;
+using Food_Market_BE.Modules.ProductModule.Models.Product;
 using Food_Market_BE.Shared.Database;
 using MongoDB.Driver;
 

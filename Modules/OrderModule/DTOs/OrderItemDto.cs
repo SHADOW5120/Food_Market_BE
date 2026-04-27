@@ -12,6 +12,8 @@
 
         public int Quantity { get; set; }
 
+        public List<OrderItemOptDto> Options { get; set; } = new();
+
         public decimal Subtotal { get; set; }
     }
 }

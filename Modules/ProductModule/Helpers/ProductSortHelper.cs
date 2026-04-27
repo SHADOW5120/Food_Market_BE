@@ -1,4 +1,4 @@
-﻿using Food_Market_BE.Modules.ProductModule.Models;
+﻿using Food_Market_BE.Modules.ProductModule.Models.Product;
 
 namespace Food_Market_BE.Modules.ProductModule.Helpers
 {

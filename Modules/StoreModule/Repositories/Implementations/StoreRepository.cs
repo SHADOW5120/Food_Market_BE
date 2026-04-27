@@ -1,4 +1,4 @@
-﻿using Food_Market_BE.Modules.ProductModule.Models;
+﻿using Food_Market_BE.Modules.ProductModule.Models.Product;
 using Food_Market_BE.Modules.StoreModule.DTOs;
 using Food_Market_BE.Modules.StoreModule.Models;
 using Food_Market_BE.Modules.StoreModule.Repositories.Interfaces;
@@ -108,7 +108,7 @@ namespace Food_Market_BE.Modules.StoreModule.Repositories.Implementations
                 ProductId = p.Id,
                 ProductName = p.Name,
                 Price = p.Price,
-                Image = p.ImageUrl,
+                Image = p.Images.FirstOrDefault(i => i.IsPrimary)?.ImageUrl,
                 Description = p.Description,
                 CategoryId = p.CategoryId,
                 CategoryName = !string.IsNullOrWhiteSpace(p.CategoryId) && categoryMap.ContainsKey(p.CategoryId)

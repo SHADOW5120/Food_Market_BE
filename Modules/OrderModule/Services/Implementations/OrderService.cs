@@ -39,7 +39,15 @@ namespace Food_Market_BE.Modules.OrderModule.Services.Implementations
                     ProductName = item.ProductName,
                     ProductImage = item.ProductImage,
                     Price = item.Price,
-                    Quantity = item.Quantity
+                    Quantity = item.Quantity,
+                    Options = item.Options.Select(opt => new OrderItemOpt
+                    {
+                        OptionId = opt.OptionId,
+                        OptionName = opt.OptionName,
+                        ValueId = opt.ValueId,
+                        ValueName = opt.ValueName,
+                        PriceModifier = opt.PriceModifier
+                    }).ToList()
                 };
 
                 OrderCalculationHelper.CalculateItemSubtotal(orderItem);
@@ -258,6 +266,14 @@ namespace Food_Market_BE.Modules.OrderModule.Services.Implementations
                     ProductImage = x.ProductImage,
                     Price = x.Price,
                     Quantity = x.Quantity,
+                    Options = x.Options.Select(o => new OrderItemOptDto
+                    {
+                        OptionId = o.OptionId,
+                        OptionName = o.OptionName,
+                        ValueId = o.ValueId,
+                        ValueName = o.ValueName,
+                        PriceModifier = o.PriceModifier
+                    }).ToList(),
                     Subtotal = x.Subtotal
                 }).ToList()
             };
@@ -288,6 +304,14 @@ namespace Food_Market_BE.Modules.OrderModule.Services.Implementations
                     ProductImage = x.ProductImage,
                     Price = x.Price,
                     Quantity = x.Quantity,
+                    Options = x.Options.Select(o => new OrderItemOptDto
+                    {
+                        OptionId = o.OptionId,
+                        OptionName = o.OptionName,
+                        ValueId = o.ValueId,
+                        ValueName = o.ValueName,
+                        PriceModifier = o.PriceModifier
+                    }).ToList(),
                     Subtotal = x.Subtotal
                 }).ToList()
             };

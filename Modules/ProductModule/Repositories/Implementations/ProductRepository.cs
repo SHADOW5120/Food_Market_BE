@@ -1,4 +1,4 @@
-﻿using Food_Market_BE.Modules.ProductModule.Models;
+﻿using Food_Market_BE.Modules.ProductModule.Models.Product;
 using Food_Market_BE.Modules.ProductModule.Repositories.Interfaces;
 using Food_Market_BE.Shared.Database;
 using MongoDB.Driver;

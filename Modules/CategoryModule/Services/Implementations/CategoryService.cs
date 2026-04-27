@@ -1,9 +1,9 @@
-﻿using Food_Market_BE.Modules.ProductModule.DTOs;
-using Food_Market_BE.Modules.ProductModule.Models;
-using Food_Market_BE.Modules.ProductModule.Repositories.Interfaces;
-using Food_Market_BE.Modules.ProductModule.Services.Interfaces;
+﻿using Food_Market_BE.Modules.CategoryModule.DTOs;
+using Food_Market_BE.Modules.CategoryModule.Models;
+using Food_Market_BE.Modules.CategoryModule.Repositories.Interfaces;
+using Food_Market_BE.Modules.CategoryModule.Services.Interfaces;
 
-namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
+namespace Food_Market_BE.Modules.CategoryModule.Services.Implementations
 {
     public class CategoryService : ICategoryService
     {

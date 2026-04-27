@@ -33,6 +33,8 @@ namespace Food_Market_BE.Modules.OrderModule.Models
 
         public string? VoucherCode { get; set; }
 
+        public string? Note { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public DateTime? UpdatedAt { get; set; }

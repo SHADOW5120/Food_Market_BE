@@ -1,4 +1,4 @@
-﻿using Food_Market_BE.Modules.ProductModule.DTOs;
+﻿using Food_Market_BE.Modules.ProductModule.DTOs.Product;
 using Food_Market_BE.Modules.ProductModule.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

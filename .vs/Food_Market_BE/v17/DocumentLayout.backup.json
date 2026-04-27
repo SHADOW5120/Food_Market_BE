@@ -3,40 +3,12 @@
   "WorkspaceRootPath": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\modules\\storemodule\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\storemodule\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\modules\\favoritemodule\\controllers\\favoritecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\favoritemodule\\controllers\\favoritecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\modules\\vouchermodule\\controllers\\vouchercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\vouchermodule\\controllers\\vouchercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\modules\\authmodule\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\authmodule\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\modules\\userprofilemodule\\controllers\\userprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\userprofilemodule\\controllers\\userprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\shared\\database\\mongodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:shared\\database\\mongodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\modules\\authmodule\\helpers\\jwthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\authmodule\\helpers\\jwthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\modules\\reviewmodule\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\reviewmodule\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,8 +18,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "JwtHelper.cs",
+              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\AuthModule\\Helpers\\JwtHelper.cs",
+              "RelativeDocumentMoniker": "Modules\\AuthModule\\Helpers\\JwtHelper.cs",
+              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\AuthModule\\Helpers\\JwtHelper.cs",
+              "RelativeToolTip": "Modules\\AuthModule\\Helpers\\JwtHelper.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAwPRsAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T11:17:10.287Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
@@ -66,112 +51,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\AuthModule\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Modules\\AuthModule\\Controllers\\AuthController.cs",
-              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\AuthModule\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Modules\\AuthModule\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T17:20:22.977Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "FavoriteController.cs",
-              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\FavoriteModule\\Controllers\\FavoriteController.cs",
-              "RelativeDocumentMoniker": "Modules\\FavoriteModule\\Controllers\\FavoriteController.cs",
-              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\FavoriteModule\\Controllers\\FavoriteController.cs",
-              "RelativeToolTip": "Modules\\FavoriteModule\\Controllers\\FavoriteController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T17:02:21.208Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAEsAAABQMzMzMzMDwFwAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAYwIAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T16:48:23.968Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MongoDbContext.cs",
-              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Shared\\Database\\MongoDbContext.cs",
-              "RelativeDocumentMoniker": "Shared\\Database\\MongoDbContext.cs",
-              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Shared\\Database\\MongoDbContext.cs",
-              "RelativeToolTip": "Shared\\Database\\MongoDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T16:34:43.059Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-04T16:33:15.715Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "VoucherController.cs",
-              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\VoucherModule\\Controllers\\VoucherController.cs",
-              "RelativeDocumentMoniker": "Modules\\VoucherModule\\Controllers\\VoucherController.cs",
-              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\VoucherModule\\Controllers\\VoucherController.cs",
-              "RelativeToolTip": "Modules\\VoucherModule\\Controllers\\VoucherController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T16:08:07.686Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UserProfileController.cs",
-              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\UserProfileModule\\Controllers\\UserProfileController.cs",
-              "RelativeDocumentMoniker": "Modules\\UserProfileModule\\Controllers\\UserProfileController.cs",
-              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\UserProfileModule\\Controllers\\UserProfileController.cs",
-              "RelativeToolTip": "Modules\\UserProfileModule\\Controllers\\UserProfileController.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAwwCkAAABSAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T16:06:45.333Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "StoreController.cs",
-              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\StoreModule\\Controllers\\StoreController.cs",
-              "RelativeDocumentMoniker": "Modules\\StoreModule\\Controllers\\StoreController.cs",
-              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\StoreModule\\Controllers\\StoreController.cs",
-              "RelativeToolTip": "Modules\\StoreModule\\Controllers\\StoreController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T16:04:29.28Z",
+              "WhenOpened": "2026-04-16T11:32:18.644Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ReviewController.cs",
-              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\ReviewModule\\Controllers\\ReviewController.cs",
-              "RelativeDocumentMoniker": "Modules\\ReviewModule\\Controllers\\ReviewController.cs",
-              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\ReviewModule\\Controllers\\ReviewController.cs",
-              "RelativeToolTip": "Modules\\ReviewModule\\Controllers\\ReviewController.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAAABUAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-04T16:03:19.021Z"
             }
           ]
         }

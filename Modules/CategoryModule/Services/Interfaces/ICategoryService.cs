@@ -1,6 +1,6 @@
-﻿using Food_Market_BE.Modules.ProductModule.DTOs;
+﻿using Food_Market_BE.Modules.CategoryModule.DTOs;
 
-namespace Food_Market_BE.Modules.ProductModule.Services.Interfaces
+namespace Food_Market_BE.Modules.CategoryModule.Services.Interfaces
 {
     public interface ICategoryService
     {

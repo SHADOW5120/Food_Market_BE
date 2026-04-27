@@ -1,4 +1,4 @@
-﻿namespace Food_Market_BE.Modules.ProductModule.DTOs
+﻿namespace Food_Market_BE.Modules.CategoryModule.DTOs
 {
     public class CategoryDto
     {

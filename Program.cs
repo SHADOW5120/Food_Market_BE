@@ -7,6 +7,10 @@ using Food_Market_BE.Modules.CartModule.Repositories.Implementations;
 using Food_Market_BE.Modules.CartModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.CartModule.Services.Implementations;
 using Food_Market_BE.Modules.CartModule.Services.Interfaces;
+using Food_Market_BE.Modules.CategoryModule.Repositories.Implementations;
+using Food_Market_BE.Modules.CategoryModule.Repositories.Interfaces;
+using Food_Market_BE.Modules.CategoryModule.Services.Implementations;
+using Food_Market_BE.Modules.CategoryModule.Services.Interfaces;
 using Food_Market_BE.Modules.FavoriteModule.Repositories.Implementations;
 using Food_Market_BE.Modules.FavoriteModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.FavoriteModule.Services.Implementations;
@@ -111,6 +115,9 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseCustomMiddleware();
+
+// Add routing and CORS
+app.UseRouting();
 
 app.UseCors("AllowFE");
 

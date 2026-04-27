@@ -3,7 +3,7 @@ using Food_Market_BE.Modules.CartModule.Helpers;
 using Food_Market_BE.Modules.CartModule.Models;
 using Food_Market_BE.Modules.CartModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.CartModule.Services.Interfaces;
-using Food_Market_BE.Modules.ProductModule.Models;
+using Food_Market_BE.Modules.ProductModule.Models.Product;
 using Food_Market_BE.Shared.Database;
 using MongoDB.Driver;
 
@@ -49,6 +49,36 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
                 throw new Exception("Product not found or unavailable.");
             }
 
+            // Validate selected options
+            var cartItemOpts = new List<CartItemOpt>();
+            if (request.SelectedOptions.Any())
+            {
+                foreach (var selectedOpt in request.SelectedOptions)
+                {
+                    var productOpt = product.Options.FirstOrDefault(o => o.Id == selectedOpt.OptionId);
+                    if (productOpt == null)
+                    {
+                        throw new Exception($"Option {selectedOpt.OptionId} not found for this product.");
+                    }
+
+                    var value = productOpt.Values.FirstOrDefault(v => v.Id == selectedOpt.ValueId);
+                    if (value == null)
+                    {
+                        throw new Exception($"Value {selectedOpt.ValueId} not found for option {selectedOpt.OptionId}.");
+                    }
+
+                    cartItemOpts.Add(new CartItemOpt
+                    {
+                        OptionId = selectedOpt.OptionId,
+                        ValueId = selectedOpt.ValueId,
+                        OptionName = productOpt.Name,
+                        ValueName = value.Name,
+                        PriceModifier = value.PriceModifier,
+                        CreatedAt = DateTime.UtcNow
+                    });
+                }
+            }
+
             var cart = await _cartRepository.GetByUserIdAsync(userId);
 
             if (cart == null)
@@ -65,14 +95,14 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
                 await _cartRepository.CreateAsync(cart);
             }
 
-            var existingItem = cart.Items.FirstOrDefault(x => x.ProductId == request.ProductId);
+            // Check if item with same product and same options already exists
+            var existingItem = cart.Items.FirstOrDefault(x => 
+                x.ProductId == request.ProductId && 
+                OptionsMatch(x.Options, cartItemOpts));
 
             if (existingItem != null)
             {
                 existingItem.Quantity += request.Quantity;
-                existingItem.Price = product.Price;
-                existingItem.ProductName = product.Name;
-                existingItem.ProductImage = product.ImageUrl;
             }
             else
             {
@@ -80,9 +110,10 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
                 {
                     ProductId = product.Id,
                     ProductName = product.Name,
-                    ProductImage = product.ImageUrl,
+                    ProductImage = product.Images.FirstOrDefault(i => i.IsPrimary)?.ImageUrl,
                     Price = product.Price,
-                    Quantity = request.Quantity
+                    Quantity = request.Quantity,
+                    Options = cartItemOpts
                 });
             }
 
@@ -90,6 +121,21 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
             await _cartRepository.UpdateAsync(cart);
 
             return MapToResponse(cart);
+        }
+
+        private bool OptionsMatch(List<CartItemOpt> existingOpts, List<CartItemOpt> newOpts)
+        {
+            if (existingOpts.Count != newOpts.Count)
+                return false;
+
+            foreach (var newOpt in newOpts)
+            {
+                var existingOpt = existingOpts.FirstOrDefault(o => o.OptionId == newOpt.OptionId);
+                if (existingOpt == null || existingOpt.ValueId != newOpt.ValueId)
+                    return false;
+            }
+
+            return true;
         }
 
         public async Task<CartResponse> UpdateCartItemAsync(string userId, string productId, UpdateCartItemRequest request)
@@ -126,7 +172,7 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
                 item.Quantity = request.Quantity;
                 item.Price = product.Price;
                 item.ProductName = product.Name;
-                item.ProductImage = product.ImageUrl;
+                item.ProductImage = product.Images.FirstOrDefault(i => i.IsPrimary)?.ImageUrl;
             }
 
             CartCalculationHelper.RecalculateCart(cart);
@@ -207,6 +253,14 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
                     ProductImage = x.ProductImage,
                     Price = x.Price,
                     Quantity = x.Quantity,
+                    Options = x.Options.Select(o => new CartItemOptDto
+                    {
+                        OptionId = o.OptionId,
+                        ValueId = o.ValueId,
+                        OptionName = o.OptionName,
+                        ValueName = o.ValueName,
+                        PriceModifier = o.PriceModifier
+                    }).ToList(),
                     Subtotal = x.Subtotal
                 }).ToList(),
                 TotalPrice = cart.TotalPrice

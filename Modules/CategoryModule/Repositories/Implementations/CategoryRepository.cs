@@ -1,9 +1,9 @@
-﻿using Food_Market_BE.Modules.ProductModule.Models;
-using Food_Market_BE.Modules.ProductModule.Repositories.Interfaces;
+﻿using Food_Market_BE.Modules.CategoryModule.Models;
+using Food_Market_BE.Modules.CategoryModule.Repositories.Interfaces;
 using Food_Market_BE.Shared.Database;
 using MongoDB.Driver;
 
-namespace Food_Market_BE.Modules.ProductModule.Repositories.Implementations
+namespace Food_Market_BE.Modules.CategoryModule.Repositories.Implementations
 {
     public class CategoryRepository : ICategoryRepository
     {

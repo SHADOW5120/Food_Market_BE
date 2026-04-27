@@ -1,8 +1,8 @@
-﻿using Food_Market_BE.Modules.ProductModule.Services.Interfaces;
+﻿using Food_Market_BE.Modules.CategoryModule.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Food_Market_BE.Modules.ProductModule.Controllers
+namespace Food_Market_BE.Modules.CategoryModule.Controllers
 {
     [ApiController]
     [Route("api/categories")]

@@ -5,6 +5,10 @@ namespace Food_Market_BE.Modules.OrderModule.Models
 {
     public class OrderItem
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; } = default!;
+
         [BsonRepresentation(BsonType.ObjectId)]
         public string ProductId { get; set; } = default!;
 
@@ -12,10 +16,15 @@ namespace Food_Market_BE.Modules.OrderModule.Models
 
         public string? ProductImage { get; set; }
 
+        // Giá gốc của món tại thời điểm order
         public decimal Price { get; set; }
 
         public int Quantity { get; set; }
 
+        // Danh sách option đã chọn (snapshot)
+        public List<OrderItemOpt> Options { get; set; } = new();
+
+        // (base + option) * quantity
         public decimal Subtotal { get; set; }
     }
 }

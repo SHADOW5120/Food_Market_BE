@@ -1,6 +1,6 @@
-﻿using Food_Market_BE.Modules.ProductModule.Models;
+﻿using Food_Market_BE.Modules.CategoryModule.Models;
 
-namespace Food_Market_BE.Modules.ProductModule.Repositories.Interfaces
+namespace Food_Market_BE.Modules.CategoryModule.Repositories.Interfaces
 {
     public interface ICategoryRepository
     {

@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
-namespace Food_Market_BE.Modules.ProductModule.Models
+namespace Food_Market_BE.Modules.CategoryModule.Models
 {
     public class Category
     {

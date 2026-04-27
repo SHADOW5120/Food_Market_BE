@@ -1,7 +1,9 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using Food_Market_BE.Modules.ProductModule.Models.Media;
+using Food_Market_BE.Modules.ProductModule.Models.Options;
 
-namespace Food_Market_BE.Modules.ProductModule.Models
+namespace Food_Market_BE.Modules.ProductModule.Models.Product
 {
     public class Product
     {
@@ -14,7 +16,9 @@ namespace Food_Market_BE.Modules.ProductModule.Models
 
         public decimal Price { get; set; }
 
-        public string? ImageUrl { get; set; }
+        public List<ProductImg> Images { get; set; } = new();
+
+        public List<ProductOpt> Options { get; set; } = new();
 
         [BsonRepresentation(BsonType.ObjectId)]
         public string CategoryId { get; set; } = default!;

@@ -16,7 +16,8 @@ namespace Food_Market_BE.Modules.CartModule.Helpers
 
             foreach (var item in cart.Items)
             {
-                item.Subtotal = item.Price * item.Quantity;
+                decimal optionsTotal = item.Options.Sum(o => o.PriceModifier);
+                item.Subtotal = (item.Price + optionsTotal) * item.Quantity;
             }
 
             cart.TotalPrice = cart.Items.Sum(x => x.Subtotal);
