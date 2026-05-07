@@ -8,5 +8,6 @@ namespace Food_Market_BE.Modules.UserProfileModule.Services.Interfaces
         Task<UserProfileResponse> UpdateProfileAsync(string userId, UpdateUserProfileRequest request);
         Task ChangePasswordAsync(string userId, ChangePasswordRequest request);
         Task EnsureProfileExistsAsync(string userId, string username);
+        //Task UpdateAvatarAsync(string userId, string avatarUrl);
     }
 }

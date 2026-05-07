@@ -11,15 +11,19 @@ namespace Food_Market_BE.Modules.UserProfileModule.Services.Implemetations
     {
         private readonly IUserRepository _userRepository;
         private readonly IUserProfileRepository _profileRepository;
+        private readonly IFileUpDelService _fileService;
+
         private readonly PasswordHasher _hasher;
 
         public UserProfileService(
             IUserRepository userRepository,
             IUserProfileRepository profileRepository,
+            IFileUpDelService fileService,
             PasswordHasher hasher)
         {
             _userRepository = userRepository;
             _profileRepository = profileRepository;
+            _fileService = fileService;
             _hasher = hasher;
         }
 
@@ -78,14 +82,25 @@ namespace Food_Market_BE.Modules.UserProfileModule.Services.Implemetations
             var profile = await _profileRepository.GetByUserIdAsync(userId)
                 ?? new UserProfile { UserId = userId };
 
+            var oldAvatar = profile.AvatarUrl;
+
             profile.Username = req.Username ?? profile.Username;
             profile.Phone = req.Phone ?? profile.Phone;
-            profile.AvatarUrl = req.AvatarUrl ?? profile.AvatarUrl;
+
+            if (!string.IsNullOrEmpty(req.AvatarUrl))
+            {
+                profile.AvatarUrl = req.AvatarUrl;
+            }
 
             if (profile.Id == null)
                 await _profileRepository.CreateAsync(profile);
             else
                 await _profileRepository.UpdateAsync(profile);
+
+            if (!string.IsNullOrEmpty(req.AvatarUrl) && !string.IsNullOrEmpty(oldAvatar) && !string.Equals(oldAvatar, req.AvatarUrl, StringComparison.OrdinalIgnoreCase))
+            {
+                await _fileService.DeleteAsync(oldAvatar);
+            }
 
             return new UserProfileResponse
             {

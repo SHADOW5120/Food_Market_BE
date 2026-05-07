@@ -18,6 +18,7 @@
     <Folder Include="Modules\CategoryModule\Helpers\" />
     <Folder Include="Shared\Configurations\" />
     <Folder Include="Shared\Constants\" />
+    <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
 </Project>

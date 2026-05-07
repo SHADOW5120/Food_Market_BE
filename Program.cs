@@ -31,6 +31,11 @@ using Food_Market_BE.Modules.StoreModule.Repositories.Implementations;
 using Food_Market_BE.Modules.StoreModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.StoreModule.Services.Implementations;
 using Food_Market_BE.Modules.StoreModule.Services.Interfaces;
+using Food_Market_BE.Modules.UserProfileModule.Repositories.Implementations;
+using Food_Market_BE.Modules.UserProfileModule.Repositories.Interfaces;
+using Food_Market_BE.Modules.UserProfileModule.Services.Implementations;
+using Food_Market_BE.Modules.UserProfileModule.Services.Implemetations;
+using Food_Market_BE.Modules.UserProfileModule.Services.Interfaces;
 using Food_Market_BE.Modules.VoucherModule.Repositories.Implementations;
 using Food_Market_BE.Modules.VoucherModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.VoucherModule.Services.Implementations;
@@ -60,15 +65,21 @@ builder.Services.AddSingleton<PasswordHasher>();
 builder.Services.AddSingleton<JwtHelper>();
 builder.Services.AddSingleton<TokenGenerator>();
 
+// User Profile
+builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+builder.Services.AddScoped<IUserProfileService, UserProfileService>();
+builder.Services.AddScoped<IFileUpDelService, FileUpDelService>();
+
 // Store
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 builder.Services.AddScoped<IStoreService, StoreService>();
 
 // Product
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-
 builder.Services.AddScoped<IProductService, ProductService>();
+
+// Category
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 // Cart
@@ -120,6 +131,9 @@ app.UseCustomMiddleware();
 app.UseRouting();
 
 app.UseCors("AllowFE");
+
+// Add uploaded files static access
+app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
