@@ -1,0 +1,125 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\userprofilemodule\\dtos\\userprofileresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\userprofilemodule\\dtos\\userprofileresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\userprofilemodule\\services\\implemetations\\userprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\userprofilemodule\\services\\implemetations\\userprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\userprofilemodule\\models\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\userprofilemodule\\models\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\userprofilemodule\\controllers\\userprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\userprofilemodule\\controllers\\userprofilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\userprofilemodule\\repositories\\implementations\\userprofilerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\userprofilemodule\\repositories\\implementations\\userprofilerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserProfileService.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\UserProfileModule\\Services\\Implemetations\\UserProfileService.cs",
+              "RelativeDocumentMoniker": "Modules\\UserProfileModule\\Services\\Implemetations\\UserProfileService.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\UserProfileModule\\Services\\Implemetations\\UserProfileService.cs",
+              "RelativeToolTip": "Modules\\UserProfileModule\\Services\\Implemetations\\UserProfileService.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAQwIcAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T02:41:35.6Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserProfileController.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\UserProfileModule\\Controllers\\UserProfileController.cs",
+              "RelativeDocumentMoniker": "Modules\\UserProfileModule\\Controllers\\UserProfileController.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\UserProfileModule\\Controllers\\UserProfileController.cs",
+              "RelativeToolTip": "Modules\\UserProfileModule\\Controllers\\UserProfileController.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAUwBcAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T02:41:35.604Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserProfileResponse.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\UserProfileModule\\DTOs\\UserProfileResponse.cs",
+              "RelativeDocumentMoniker": "Modules\\UserProfileModule\\DTOs\\UserProfileResponse.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\UserProfileModule\\DTOs\\UserProfileResponse.cs",
+              "RelativeToolTip": "Modules\\UserProfileModule\\DTOs\\UserProfileResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T02:41:35.595Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserProfileRepository.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\UserProfileModule\\Repositories\\Implementations\\UserProfileRepository.cs",
+              "RelativeDocumentMoniker": "Modules\\UserProfileModule\\Repositories\\Implementations\\UserProfileRepository.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\UserProfileModule\\Repositories\\Implementations\\UserProfileRepository.cs",
+              "RelativeToolTip": "Modules\\UserProfileModule\\Repositories\\Implementations\\UserProfileRepository.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T04:32:39.439Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserProfile.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\UserProfileModule\\Models\\UserProfile.cs",
+              "RelativeDocumentMoniker": "Modules\\UserProfileModule\\Models\\UserProfile.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\UserProfileModule\\Models\\UserProfile.cs",
+              "RelativeToolTip": "Modules\\UserProfileModule\\Models\\UserProfile.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAkwBEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T02:41:35.555Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

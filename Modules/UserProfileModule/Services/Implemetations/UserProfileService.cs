@@ -53,7 +53,9 @@ namespace Food_Market_BE.Modules.UserProfileModule.Services.Implemetations
                 profile = new UserProfile
                 {
                     UserId = userId,
-                    Username = "",
+                    Username = user.Username,
+                    Email = user.Email,
+                    Role = user.Role,
                     Phone = "",
                     AvatarUrl = ""
                 };
@@ -83,7 +85,7 @@ namespace Food_Market_BE.Modules.UserProfileModule.Services.Implemetations
                 ?? new UserProfile { UserId = userId };
 
             var oldAvatar = profile.AvatarUrl;
-
+            
             profile.Username = req.Username ?? profile.Username;
             profile.Phone = req.Phone ?? profile.Phone;
 
