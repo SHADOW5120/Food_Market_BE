@@ -29,10 +29,7 @@ namespace Food_Market_BE.Modules.UserProfileModule.Controllers
                 var userId = CurrentUserHelper.GetUserId(HttpContext);
                 var result = await _service.GetMeAsync(userId);
 
-                var response = ApiResponse<object>.SuccessResponse(new
-                {
-                    result
-                });
+                var response = ApiResponse<UserProfileResponse>.SuccessResponse(result);
 
                 return Ok(response);
             }
@@ -51,10 +48,7 @@ namespace Food_Market_BE.Modules.UserProfileModule.Controllers
                 var userId = CurrentUserHelper.GetUserId(HttpContext);
                 var result = await _service.UpdateProfileAsync(userId, req);
 
-                var response = ApiResponse<object>.SuccessResponse(new
-                {
-                    result
-                }, "Cập nhật profile thành công");
+                var response = ApiResponse<UserProfileResponse>.SuccessResponse(result, "Cập nhật profile thành công");
 
                 return Ok(response);
             }
