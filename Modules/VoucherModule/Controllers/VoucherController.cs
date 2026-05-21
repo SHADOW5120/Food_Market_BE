@@ -47,7 +47,7 @@ namespace Food_Market_BE.Modules.VoucherModule.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = UserRole.Admin)]
         public async Task<IActionResult> CreateVoucher([FromBody] CreateVoucherRequest request)
         {
             var result = await _voucherService.CreateVoucherAsync(request);
@@ -55,7 +55,7 @@ namespace Food_Market_BE.Modules.VoucherModule.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = UserRole.Admin)]
         public async Task<IActionResult> UpdateVoucher(string id, [FromBody] CreateVoucherRequest request)
         {
             var result = await _voucherService.UpdateVoucherAsync(id, request);
@@ -63,7 +63,7 @@ namespace Food_Market_BE.Modules.VoucherModule.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = UserRole.Admin)]
         public async Task<IActionResult> DeleteVoucher(string id)
         {
             var deleted = await _voucherService.DeleteVoucherAsync(id);

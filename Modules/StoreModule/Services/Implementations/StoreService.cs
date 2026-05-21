@@ -105,15 +105,8 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
             return await _storeRepository.GetStoreProductsAsync(storeId);
         }
 
-        public async Task<StoreResponse> CreateStoreAsync(CreateStoreRequest request, string userId, string role)
+        public async Task<StoreResponse> CreateStoreAsync(CreateStoreRequest request, string userId)
         {
-            if (role.ToLower() != "seller" && role.ToLower() != "admin")
-                throw new Exception("Only seller can create store");
-
-            var existingStore = await _storeRepository.GetStoreByOwnerIdAsync(userId);
-            if (existingStore != null)
-                throw new Exception("You already own a store");
-
             var store = new Store
             {
                 Name = request.Name,
@@ -133,16 +126,15 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
             return StoreHelper.ToStoreResponse(store);
         }
 
-        public async Task<StoreResponse> UpdateStoreAsync(string storeId, UpdateStoreRequest request, string userId, string role)
+        public async Task<StoreResponse> UpdateStoreAsync(string storeId, UpdateStoreRequest request, string userId)
         {
             var store = await _storeRepository.GetStoreByIdAsync(storeId);
             if (store == null)
                 throw new Exception("Store not found");
 
-            var isAdmin = role.ToLower() == "admin";
             var isOwner = StoreHelper.IsOwner(store, userId);
 
-            if (!isOwner && !isAdmin)
+            if (!isOwner)
                 throw new Exception("You do not have permission to update this store");
 
             if (!string.IsNullOrWhiteSpace(request.Name))
@@ -168,16 +160,15 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
             return StoreHelper.ToStoreResponse(store);
         }
 
-        public async Task<bool> DeleteStoreAsync(string storeId, string userId, string role)
+        public async Task<bool> DeleteStoreAsync(string storeId, string userId)
         {
             var store = await _storeRepository.GetStoreByIdAsync(storeId);
             if (store == null)
                 throw new Exception("Store not found");
 
-            var isAdmin = role.ToLower() == "admin";
             var isOwner = StoreHelper.IsOwner(store, userId);
 
-            if (!isOwner && !isAdmin)
+            if (!isOwner)
                 throw new Exception("You do not have permission to delete this store");
 
             await _storeRepository.DeleteStoreAsync(storeId);

@@ -161,7 +161,7 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             };
         }
 
-        public async Task<ProductDetailDto> CreateAsync(string sellerId, CreateProductRequest request)
+        public async Task<ProductDetailDto> CreateAsync(string storeId, CreateProductRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.Name))
                 throw new Exception("Product name is required");
@@ -175,12 +175,11 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
 
             var product = new Product
             {
-                Id = Guid.NewGuid().ToString(),
                 Name = request.Name.Trim(),
                 Description = request.Description,
                 Price = request.Price,
                 CategoryId = request.CategoryId,
-                StoreId = sellerId,
+                StoreId = storeId,
                 IsAvailable = true,
                 IsDeleted = false,
                 CreatedAt = DateTime.UtcNow,
@@ -216,14 +215,14 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             return await GetByIdAsync(product.Id) ?? throw new Exception("Create failed");
         }
 
-        public async Task<bool> UpdateAsync(string sellerId, string productId, UpdateProductRequest request)
+        public async Task<bool> UpdateAsync(string storeId, string productId, UpdateProductRequest request)
         {
             var product = await _productRepository.GetByIdAsync(productId);
 
             if (product == null || product.IsDeleted)
                 return false;
 
-            if (product.StoreId != sellerId)
+            if (product.StoreId != storeId)
                 return false;
 
             var category = await _categoryRepository.GetByIdAsync(request.CategoryId);
@@ -240,14 +239,14 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             return true;
         }
 
-        public async Task<bool> DeleteAsync(string sellerId, string productId)
+        public async Task<bool> DeleteAsync(string storeId, string productId)
         {
             var product = await _productRepository.GetByIdAsync(productId);
 
             if (product == null || product.IsDeleted)
                 return false;
 
-            if (product.StoreId != sellerId)
+            if (product.StoreId != storeId)
                 return false;
 
             product.IsDeleted = true;
@@ -257,14 +256,14 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             return true;
         }
 
-        public async Task<bool> ToggleAvailabilityAsync(string sellerId, string productId)
+        public async Task<bool> ToggleAvailabilityAsync(string storeId, string productId)
         {
             var product = await _productRepository.GetByIdAsync(productId);
 
             if (product == null || product.IsDeleted)
                 return false;
 
-            if (product.StoreId != sellerId)
+            if (product.StoreId != storeId)
                 return false;
 
             product.IsAvailable = !product.IsAvailable;

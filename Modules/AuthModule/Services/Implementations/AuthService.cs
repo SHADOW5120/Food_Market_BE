@@ -42,7 +42,9 @@ namespace Food_Market_BE.Modules.AuthModule.Services.Implementations
             {
                 Username = req.Username,
                 Email = req.Email,
-                PasswordHash = _hasher.Hash(req.Password)
+                PasswordHash = _hasher.Hash(req.Password),
+                Role = UserRole.User,
+                IsActive = true,
             };
 
             await _userRepo.CreateAsync(user);

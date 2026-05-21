@@ -9,8 +9,8 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Interfaces
         Task<StoreDetailResponse?> GetStoreBySellerIdAsync(string sellerId);
         Task<List<StoreProductDto>> GetStoreProductsAsync(string storeId);
 
-        Task<StoreResponse> CreateStoreAsync(CreateStoreRequest request, string userId, string role);
-        Task<StoreResponse> UpdateStoreAsync(string storeId, UpdateStoreRequest request, string userId, string role);
-        Task<bool> DeleteStoreAsync(string storeId, string userId, string role);
+        Task<StoreResponse> CreateStoreAsync(CreateStoreRequest request, string userId);
+        Task<StoreResponse> UpdateStoreAsync(string storeId, UpdateStoreRequest request, string userId);
+        Task<bool> DeleteStoreAsync(string storeId, string userId);
     }
 }

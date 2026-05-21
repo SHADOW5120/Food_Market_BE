@@ -34,7 +34,7 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = "Seller")]
+        [Authorize(Roles = UserRole.Seller)]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
         {
@@ -45,7 +45,7 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = "Seller")]
+        [Authorize(Roles = UserRole.Seller)]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody] UpdateProductRequest request)
         {
@@ -60,7 +60,7 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
             return Ok(new { message = "Updated successfully" });
         }
 
-        [Authorize(Roles = "Seller")]
+        [Authorize(Roles = UserRole.Seller)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -75,7 +75,7 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
             return Ok(new { message = "Deleted successfully" });
         }
 
-        [Authorize(Roles = "Seller")]
+        [Authorize(Roles = UserRole.Seller)]
         [HttpPatch("{id}/toggle-availability")]
         public async Task<IActionResult> ToggleAvailability(string id)
         {

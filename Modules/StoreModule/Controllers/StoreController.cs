@@ -49,7 +49,7 @@ namespace Food_Market_BE.Modules.StoreModule.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "seller,admin")]
+        [Authorize(Roles = UserRole.Seller + "," + UserRole.Admin)]
         public async Task<IActionResult> CreateStore([FromBody] CreateStoreRequest request)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -58,12 +58,12 @@ namespace Food_Market_BE.Modules.StoreModule.Controllers
             if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(role))
                 throw new Exception("Unauthorized");
 
-            var result = await _storeService.CreateStoreAsync(request, userId, role);
+            var result = await _storeService.CreateStoreAsync(request, userId);
             return Ok(result);
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "seller,admin")]
+        [Authorize(Roles = UserRole.Seller + "," + UserRole.Admin)]
         public async Task<IActionResult> UpdateStore(string id, [FromBody] UpdateStoreRequest request)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -72,12 +72,12 @@ namespace Food_Market_BE.Modules.StoreModule.Controllers
             if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(role))
                 throw new Exception("Unauthorized");
 
-            var result = await _storeService.UpdateStoreAsync(id, request, userId, role);
+            var result = await _storeService.UpdateStoreAsync(id, request, userId);
             return Ok(result);
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "seller,admin")]
+        [Authorize(Roles = UserRole.Seller + "," + UserRole.Admin)]
         public async Task<IActionResult> DeleteStore(string id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -86,7 +86,7 @@ namespace Food_Market_BE.Modules.StoreModule.Controllers
             if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(role))
                 throw new Exception("Unauthorized");
 
-            var result = await _storeService.DeleteStoreAsync(id, userId, role);
+            var result = await _storeService.DeleteStoreAsync(id, userId);
             return Ok(new
             {
                 success = result,
