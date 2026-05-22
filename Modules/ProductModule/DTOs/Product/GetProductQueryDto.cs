@@ -1,6 +1,6 @@
 ﻿namespace Food_Market_BE.Modules.ProductModule.DTOs.Product
 {
-    public class GetProductsQueryDto
+    public class GetProductQueryDto
     {
         public int Page { get; set; } = 1;
         public int PageSize { get; set; } = 10;

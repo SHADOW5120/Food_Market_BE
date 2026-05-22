@@ -4,7 +4,7 @@ namespace Food_Market_BE.Modules.AuthModule.Services.Interfaces
 {
     public interface IAuthService
     {
-        Task RegisterAsync(RegisterRequest req);
+        Task<AuthResponse> RegisterAsync(RegisterRequest req);
         Task<AuthResponse> LoginAsync(LoginRequest req);
         Task<AuthResponse> RefreshAsync(string refreshToken);
         Task ForgotPasswordAsync(string email);

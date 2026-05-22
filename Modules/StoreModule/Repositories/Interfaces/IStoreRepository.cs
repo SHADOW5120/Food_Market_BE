@@ -5,7 +5,7 @@ namespace Food_Market_BE.Modules.StoreModule.Repositories.Interfaces
 {
     public interface IStoreRepository
     {
-        Task<(List<Store> Stores, int TotalCount)> GetStoresAsync(
+        Task<(List<Store> Stores, int TotalCount)> GetAllAsync(
             int page,
             int pageSize,
             string? search,

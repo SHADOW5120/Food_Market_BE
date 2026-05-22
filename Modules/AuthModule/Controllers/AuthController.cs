@@ -19,8 +19,8 @@ namespace Food_Market_BE.Modules.AuthModule.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest req)
         {
-            await _service.RegisterAsync(req);
-            return Ok(ApiResponse<string>.SuccessResponse(null, "Register success"));
+            var result = await _service.RegisterAsync(req);
+            return Ok(ApiResponse<AuthResponse>.SuccessResponse(result));
         }
 
         [HttpPost("login")]

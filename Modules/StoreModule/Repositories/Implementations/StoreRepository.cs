@@ -23,7 +23,7 @@ namespace Food_Market_BE.Modules.StoreModule.Repositories.Implementations
             _categories = database.GetCollection<BsonDocument>("Categories");
         }
 
-        public async Task<(List<Store> Stores, int TotalCount)> GetStoresAsync(
+        public async Task<(List<Store> Stores, int TotalCount)> GetAllAsync(
             int page,
             int pageSize,
             string? search,

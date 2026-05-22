@@ -19,13 +19,14 @@ namespace Food_Market_BE.Modules.StoreModule.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> GetStores(
-            [FromQuery] int page = 1,
-            [FromQuery] int pageSize = 10,
-            [FromQuery] string? search = null,
-            [FromQuery] double? minRating = null)
+        public async Task<IActionResult> GetStores([FromQuery] GetStoreQueryDto query)
         {
-            var result = await _storeService.GetStoresAsync(page, pageSize, search, minRating);
+            var result = await _storeService.GetStoresAsync(
+                query.Page,
+                query.PageSize,
+                query.Search,
+                query.MinRating);
+
             return Ok(result);
         }
 

@@ -32,7 +32,7 @@ namespace Food_Market_BE.Modules.AuthModule.Services.Implementations
             _token = token;
         }
 
-        public async Task RegisterAsync(RegisterRequest req)
+        public async Task<AuthResponse> RegisterAsync(RegisterRequest req)
         {
             var exist = await _userRepo.GetByEmailAsync(req.Email);
             if (exist != null)
@@ -48,6 +48,23 @@ namespace Food_Market_BE.Modules.AuthModule.Services.Implementations
             };
 
             await _userRepo.CreateAsync(user);
+
+            var access = _jwt.GenerateToken(user.Id, user.Email, user.Role);
+            var refresh = _token.Generate();
+
+            await _refreshRepo.CreateAsync(new RefreshToken
+            {
+                UserId = user.Id,
+                Token = refresh,
+                ExpiresAt = DateTime.UtcNow.AddDays(7)
+            });
+
+            return new AuthResponse
+            {
+                AccessToken = access,
+                RefreshToken = refresh,
+                User = new { user.Id, user.Username, user.Email, user.Role }
+            };
         }
 
         public async Task<AuthResponse> LoginAsync(LoginRequest req)
@@ -71,7 +88,7 @@ namespace Food_Market_BE.Modules.AuthModule.Services.Implementations
             {
                 AccessToken = access,
                 RefreshToken = refresh,
-                User = new { user.Id, user.Username, user.Email }
+                User = new { user.Id, user.Username, user.Email, user.Role }
             };
         }
 
@@ -90,7 +107,7 @@ namespace Food_Market_BE.Modules.AuthModule.Services.Implementations
             {
                 AccessToken = access,
                 RefreshToken = refreshToken,
-                User = new { user.Id, user.Email }
+                User = new { user.Id, user.Username, user.Email, user.Role }
             };
         }
 

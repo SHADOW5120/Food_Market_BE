@@ -9,6 +9,8 @@ using Food_Market_BE.Modules.ProductModule.Models.Options;
 using Food_Market_BE.Modules.ProductModule.Models.Product;
 using Food_Market_BE.Modules.ProductModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.ProductModule.Services.Interfaces;
+using Food_Market_BE.Modules.StoreModule.Repositories.Interfaces;
+using MongoDB.Driver.Core.Servers;
 
 namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
 {
@@ -16,16 +18,19 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IStoreRepository _storeRepository;
 
         public ProductService(
             IProductRepository productRepository,
-            ICategoryRepository categoryRepository)
+            ICategoryRepository categoryRepository,
+            IStoreRepository storeRepository)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
+            _storeRepository = storeRepository;
         }
 
-        public async Task<PagedProductResponse> GetProductsAsync(GetProductsQueryDto query)
+        public async Task<PagedProductResponse> GetProductsAsync(GetProductQueryDto query)
         {
             var products = await _productRepository.GetAllAsync();
 
@@ -69,11 +74,68 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             };
         }
 
-        public async Task<PagedProductResponse> GetSellerProductsAsync(string sellerId, GetProductsQueryDto query)
+        public async Task<PagedProductResponse> GetSellerProductsAsync(string sellerId, GetProductQueryDto query)
+        {
+            //var products = await _productRepository.GetAllAsync();
+
+            var stores = await _storeRepository.GetAllAsync();
+
+            var sellerStoreIds = stores
+                .Where(x => x.SellerId == sellerId)
+                .Select(x => x.Id)
+                .ToList();
+
+            var products = await _productRepository.GetAllAsync();
+
+            products = products
+                .Where(x => sellerStoreIds.Contains(x.StoreId) && !x.IsDeleted)
+                .ToList();
+
+            products = products.Where(x => x.StoreId == sellerId && !x.IsDeleted).ToList();
+
+            if (!string.IsNullOrWhiteSpace(query.CategoryId))
+                products = products.Where(x => x.CategoryId == query.CategoryId).ToList();
+
+            if (query.MinPrice.HasValue)
+                products = products.Where(x => x.Price >= query.MinPrice.Value).ToList();
+
+            if (query.MaxPrice.HasValue)
+                products = products.Where(x => x.Price <= query.MaxPrice.Value).ToList();
+
+            if (!string.IsNullOrWhiteSpace(query.Search))
+                products = products.Where(x => x.Name.ToLower().Contains(query.Search.ToLower())).ToList();
+
+            var sorted = ProductSortHelper.ApplySort(products, query.Sort).ToList();
+
+            var total = sorted.Count;
+
+            var items = sorted
+                .Skip((query.Page - 1) * query.PageSize)
+                .Take(query.PageSize)
+                .Select(x => new ProductDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = x.Price,
+                    IsAvailable = x.IsAvailable,
+                    ImageUrl = x.Images.FirstOrDefault(i => i.IsPrimary)?.ImageUrl
+                })
+                .ToList();
+
+            return new PagedProductResponse
+            {
+                Items = items,
+                Total = total,
+                Page = query.Page,
+                PageSize = query.PageSize
+            };
+        }
+
+        public async Task<PagedProductResponse> GetStoreProductsAsync(string StoreId, GetProductQueryDto query)
         {
             var products = await _productRepository.GetAllAsync();
 
-            products = products.Where(x => x.StoreId == sellerId && !x.IsDeleted).ToList();
+            products = products.Where(x => x.StoreId == StoreId && !x.IsDeleted).ToList();
 
             if (!string.IsNullOrWhiteSpace(query.CategoryId))
                 products = products.Where(x => x.CategoryId == query.CategoryId).ToList();

@@ -17,7 +17,7 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
 
         public async Task<PagedStoreResponse> GetStoresAsync(int page, int pageSize, string? search, double? minRating)
         {
-            var (stores, totalCount) = await _storeRepository.GetStoresAsync(page, pageSize, search, minRating);
+            var (stores, totalCount) = await _storeRepository.GetAllAsync(page, pageSize, search, minRating);
 
             var items = new List<StoreListItemDto>();
 
@@ -36,7 +36,7 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
             };
         }
 
-        public async Task<StoreDetailResponse?> GetStoreDetailAsync(string storeId)
+        public async Task<StoreResponse?> GetStoreDetailAsync(string storeId)
         {
             var store = await _storeRepository.GetStoreByIdAsync(storeId);
             if (store == null) return null;
@@ -52,7 +52,7 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
             var products = await _storeRepository.GetStoreProductsAsync(storeId);
             var categories = StoreHelper.ExtractCategories(products);
 
-            return new StoreDetailResponse
+            return new StoreResponse
             {
                 Id = store.Id,
                 Name = store.Name,
@@ -66,7 +66,7 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
             };
         }
 
-        public async Task<StoreDetailResponse?> GetStoreBySellerIdAsync(string sellerId)
+        public async Task<StoreResponse?> GetStoreBySellerIdAsync(string sellerId)
         {
             var store = await _storeRepository.GetStoreByOwnerIdAsync(sellerId);
             if (store == null) return null;
@@ -82,7 +82,7 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
             var products = await _storeRepository.GetStoreProductsAsync(store.Id);
             var categories = StoreHelper.ExtractCategories(products);
 
-            return new StoreDetailResponse
+            return new StoreResponse
             {
                 Id = store.Id,
                 Name = store.Name,

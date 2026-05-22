@@ -5,8 +5,8 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Interfaces
     public interface IStoreService
     {
         Task<PagedStoreResponse> GetStoresAsync(int page, int pageSize, string? search, double? minRating);
-        Task<StoreDetailResponse?> GetStoreDetailAsync(string storeId);
-        Task<StoreDetailResponse?> GetStoreBySellerIdAsync(string sellerId);
+        Task<StoreResponse?> GetStoreDetailAsync(string storeId);
+        Task<StoreResponse?> GetStoreBySellerIdAsync(string sellerId);
         Task<List<StoreProductDto>> GetStoreProductsAsync(string storeId);
 
         Task<StoreResponse> CreateStoreAsync(CreateStoreRequest request, string userId);
