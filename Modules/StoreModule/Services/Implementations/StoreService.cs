@@ -15,42 +15,46 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
             _storeRepository = storeRepository;
         }
 
-        public async Task<PagedStoreResponse> GetStoresAsync(int page, int pageSize, string? search, double? minRating)
+        // =========================
+        // LIST STORES (PUBLIC)
+        // =========================
+        public async Task<PagedStoreResponse> GetStoresAsync(GetStoreQueryDto query)
         {
-            var (stores, totalCount) = await _storeRepository.GetAllAsync(page, pageSize, search, minRating);
+            var stores = await _storeRepository.SearchAsync(query);
 
-            var items = new List<StoreListItemDto>();
-
-            foreach (var store in stores)
-            {
-                var totalProducts = await _storeRepository.CountProductsByStoreIdAsync(store.Id);
-                items.Add(StoreHelper.ToStoreListItemDto(store, totalProducts));
-            }
-
-            return new PagedStoreResponse
-            {
-                Items = items,
-                TotalCount = totalCount,
-                Page = page,
-                PageSize = pageSize
-            };
+            return MapPaged(stores, query);
         }
 
-        public async Task<StoreResponse?> GetStoreDetailAsync(string storeId)
+        // =========================
+        // STORE BY SELLER
+        // =========================
+        public async Task<PagedStoreResponse> GetStoreBySellerIdAsync(string sellerId, GetStoreQueryDto query)
+        {
+            var stores = await _storeRepository.GetStoreBySellerIdAsync(sellerId);
+
+            var filtered = ApplyFilters(stores, query);
+
+            return MapPaged(filtered, query);
+        }
+
+        // =========================
+        // DETAIL
+        // =========================
+        public async Task<StoreResponse?> GetStoreByIdAsync(string storeId)
         {
             var store = await _storeRepository.GetStoreByIdAsync(storeId);
-            if (store == null) return null;
+
+            if (store == null || store.IsDeleted)
+                return null;
 
             var rating = await _storeRepository.CalculateStoreRatingAsync(storeId);
+
             if (store.Rating != rating)
             {
                 store.Rating = rating;
                 store.UpdatedAt = DateTime.UtcNow;
                 await _storeRepository.UpdateStoreAsync(store);
             }
-
-            var products = await _storeRepository.GetStoreProductsAsync(storeId);
-            var categories = StoreHelper.ExtractCategories(products);
 
             return new StoreResponse
             {
@@ -60,51 +64,13 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
                 BannerUrl = store.BannerUrl,
                 Description = store.Description,
                 Rating = store.Rating,
-                IsOpen = store.IsOpen,
-                Categories = categories,
-                Products = products
+                IsOpen = store.IsOpen
             };
         }
 
-        public async Task<StoreResponse?> GetStoreBySellerIdAsync(string sellerId)
-        {
-            var store = await _storeRepository.GetStoreByOwnerIdAsync(sellerId);
-            if (store == null) return null;
-
-            var rating = await _storeRepository.CalculateStoreRatingAsync(store.Id);
-            if (store.Rating != rating)
-            {
-                store.Rating = rating;
-                store.UpdatedAt = DateTime.UtcNow;
-                await _storeRepository.UpdateStoreAsync(store);
-            }
-
-            var products = await _storeRepository.GetStoreProductsAsync(store.Id);
-            var categories = StoreHelper.ExtractCategories(products);
-
-            return new StoreResponse
-            {
-                Id = store.Id,
-                Name = store.Name,
-                LogoUrl = store.LogoUrl,
-                BannerUrl = store.BannerUrl,
-                Description = store.Description,
-                Rating = store.Rating,
-                IsOpen = store.IsOpen,
-                Categories = categories,
-                Products = products
-            };
-        }
-
-        public async Task<List<StoreProductDto>> GetStoreProductsAsync(string storeId)
-        {
-            var store = await _storeRepository.GetStoreByIdAsync(storeId);
-            if (store == null)
-                throw new Exception("Store not found");
-
-            return await _storeRepository.GetStoreProductsAsync(storeId);
-        }
-
+        // =========================
+        // CREATE
+        // =========================
         public async Task<StoreResponse> CreateStoreAsync(CreateStoreRequest request, string userId)
         {
             var store = new Store
@@ -126,16 +92,18 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
             return StoreHelper.ToStoreResponse(store);
         }
 
+        // =========================
+        // UPDATE
+        // =========================
         public async Task<StoreResponse> UpdateStoreAsync(string storeId, UpdateStoreRequest request, string userId)
         {
             var store = await _storeRepository.GetStoreByIdAsync(storeId);
-            if (store == null)
+
+            if (store == null || store.IsDeleted)
                 throw new Exception("Store not found");
 
-            var isOwner = StoreHelper.IsOwner(store, userId);
-
-            if (!isOwner)
-                throw new Exception("You do not have permission to update this store");
+            if (store.OwnerId != userId)
+                throw new Exception("You do not have permission");
 
             if (!string.IsNullOrWhiteSpace(request.Name))
                 store.Name = request.Name;
@@ -160,19 +128,54 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
             return StoreHelper.ToStoreResponse(store);
         }
 
+        // =========================
+        // DELETE
+        // =========================
         public async Task<bool> DeleteStoreAsync(string storeId, string userId)
         {
             var store = await _storeRepository.GetStoreByIdAsync(storeId);
-            if (store == null)
-                throw new Exception("Store not found");
 
-            var isOwner = StoreHelper.IsOwner(store, userId);
+            if (store == null || store.IsDeleted)
+                return false;
 
-            if (!isOwner)
-                throw new Exception("You do not have permission to delete this store");
+            if (store.OwnerId != userId)
+                throw new Exception("You do not have permission");
 
             await _storeRepository.DeleteStoreAsync(storeId);
             return true;
+        }
+
+        // =========================
+        // PRIVATE HELPERS
+        // =========================
+        private static List<Store> ApplyFilters(List<Store> stores, GetStoreQueryDto query)
+        {
+            return stores
+                .Where(x => !x.IsDeleted)
+                .Where(x => string.IsNullOrWhiteSpace(query.Search)
+                            || x.Name.Contains(query.Search, StringComparison.OrdinalIgnoreCase))
+                .Where(x => !query.MinRating.HasValue
+                            || x.Rating >= query.MinRating.Value)
+                .ToList();
+        }
+
+        private static PagedStoreResponse MapPaged(List<Store> stores, GetStoreQueryDto query)
+        {
+            var total = stores.Count;
+
+            var items = stores
+                .Skip((query.Page - 1) * query.PageSize)
+                .Take(query.PageSize)
+                .Select(StoreHelper.ToStoreListItemDto)
+                .ToList();
+
+            return new PagedStoreResponse
+            {
+                Items = items,
+                TotalCount = total,
+                Page = query.Page,
+                PageSize = query.PageSize
+            };
         }
     }
 }

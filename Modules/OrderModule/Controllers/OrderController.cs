@@ -55,12 +55,69 @@ namespace Food_Market_BE.Modules.OrderModule.Controllers
         }
 
         [HttpPut("{id}/status")]
-        [Authorize(Roles = "seller,admin")]
+        [Authorize(Roles = UserRole.Seller)]
         public async Task<IActionResult> UpdateOrderStatus(string id, [FromBody] UpdateOrderStatusRequest request)
         {
             var success = await _orderService.UpdateOrderStatusAsync(id, request.NewStatus);
             return Ok(new { updated = success });
         }
+
+        [HttpGet("seller")]
+        [Authorize(Roles = UserRole.Seller)]
+        public async Task<IActionResult> GetSellerOrders(
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 10)
+        {
+            var sellerId = GetUserId();
+
+            var result = await _orderService
+                .GetSellerOrdersAsync(
+                    sellerId,
+                    page,
+                    pageSize);
+
+            return Ok(result);
+        }
+
+        [HttpGet("seller/{id}")]
+        [Authorize(Roles = UserRole.Seller)]
+        public async Task<IActionResult> GetSellerOrderDetail(
+    string id)
+        {
+            var sellerId = GetUserId();
+
+            var result =
+                await _orderService.GetSellerOrderDetailAsync(
+                    id,
+                    sellerId);
+
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
+        }
+
+        [HttpPut("seller/{id}/status")]
+        [Authorize(Roles = UserRole.Seller)]
+        public async Task<IActionResult> UpdateSellerOrderStatus(
+    string id,
+    [FromBody] UpdateOrderStatusRequest request)
+        {
+            var sellerId = GetUserId();
+
+            var result =
+                await _orderService.UpdateSellerOrderStatusAsync(
+                    id,
+                    sellerId,
+                    request.NewStatus);
+
+            return Ok(new
+            {
+                success = result
+            });
+        }
+
+
 
         private string GetUserId()
         {
@@ -68,5 +125,7 @@ namespace Food_Market_BE.Modules.OrderModule.Controllers
                    ?? User.FindFirstValue("id")
                    ?? throw new Exception("UserId not found in token.");
         }
+
+
     }
 }

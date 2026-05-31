@@ -18,14 +18,11 @@ namespace Food_Market_BE.Modules.CategoryModule.Services.Implementations
         {
             var categories = await _categoryRepository.GetAllAsync();
 
-            return categories
-                .OrderBy(x => x.Name)
-                .Select(x => new CategoryDto
-                {
-                    Id = x.Id,
-                    Name = x.Name
-                })
-                .ToList();
+            return categories.Select(x => new CategoryDto
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
         }
 
         public async Task<CategoryDto> CreateAsync(string name)

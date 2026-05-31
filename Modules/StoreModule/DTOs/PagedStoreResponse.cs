@@ -2,7 +2,7 @@
 {
     public class PagedStoreResponse
     {
-        public List<StoreListItemDto> Items { get; set; } = new();
+        public List<StoreResponse> Items { get; set; } = new();
         public int TotalCount { get; set; }
         public int Page { get; set; }
         public int PageSize { get; set; }

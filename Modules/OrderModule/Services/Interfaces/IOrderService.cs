@@ -8,9 +8,9 @@ namespace Food_Market_BE.Modules.OrderModule.Services.Interfaces
         Task<PagedOrderResponse> GetUserOrdersAsync(string userId, int page, int pageSize);
         Task<OrderDetailDto?> GetOrderDetailAsync(string orderId, string userId, bool isAdmin = false);
         Task<bool> CancelOrderAsync(string orderId, string userId);
-        Task<bool> UpdateOrderStatusAsync(string orderId, string newStatus);
+        Task<bool> UpdateOrderStatusAsync(string orderId, OrderStatus newStatus);
         Task<PagedOrderResponse> GetSellerOrdersAsync(string sellerId, int page, int pageSize);
         Task<OrderDetailDto?> GetSellerOrderDetailAsync(string orderId, string sellerId);
-        Task<bool> UpdateSellerOrderStatusAsync(string orderId, string sellerId, string newStatus);
+        Task<bool> UpdateSellerOrderStatusAsync(string orderId, string sellerId, OrderStatus newStatus);
     }
 }

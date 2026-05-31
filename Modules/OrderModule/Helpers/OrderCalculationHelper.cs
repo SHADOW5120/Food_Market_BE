@@ -7,7 +7,7 @@ namespace Food_Market_BE.Modules.OrderModule.Helpers
         public static void CalculateItemSubtotal(OrderItem item)
         {
             decimal optionsTotal = item.Options.Sum(o => o.PriceModifier);
-            item.Subtotal = (item.Price + optionsTotal) * item.Quantity;
+            item.Subtotal = (item.UnitPrice + optionsTotal) * item.Quantity;
         }
 
         public static decimal CalculateSubtotal(List<OrderItem> items)

@@ -9,7 +9,7 @@ namespace Food_Market_BE.Modules.CartModule.Helpers
             if (cart.Items == null || !cart.Items.Any())
             {
                 cart.Items = new List<CartItem>();
-                cart.TotalPrice = 0;
+                //cart.TotalPrice = 0;
                 cart.UpdatedAt = DateTime.UtcNow;
                 return;
             }
@@ -20,7 +20,7 @@ namespace Food_Market_BE.Modules.CartModule.Helpers
                 item.Subtotal = (item.Price + optionsTotal) * item.Quantity;
             }
 
-            cart.TotalPrice = cart.Items.Sum(x => x.Subtotal);
+            //cart.TotalPrice = cart.Items.Sum(x => x.Subtotal);
             cart.UpdatedAt = DateTime.UtcNow;
         }
     }

@@ -4,22 +4,24 @@ using Food_Market_BE.Modules.FavoriteModule.Models;
 using Food_Market_BE.Modules.FavoriteModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.FavoriteModule.Services.Interfaces;
 using Food_Market_BE.Modules.ProductModule.Models.Product;
-using Food_Market_BE.Shared.Database;
-using MongoDB.Driver;
+using Food_Market_BE.Modules.ProductModule.Repositories.Interfaces;
 
 namespace Food_Market_BE.Modules.FavoriteModule.Services.Implementations
 {
     public class FavoriteService : IFavoriteService
     {
         private readonly IFavoriteRepository _favoriteRepository;
-        private readonly IMongoCollection<Product> _products;
+        //private readonly IMongoCollection<Product> _products;
+        private readonly IProductRepository _productRepository;
 
         public FavoriteService(
             IFavoriteRepository favoriteRepository,
-            MongoDbContext database)
+            //MongoDbContext database,
+            IProductRepository productRespository)
         {
             _favoriteRepository = favoriteRepository;
-            _products = database.GetCollection<Product>("Products");
+            //_products = database.GetCollection<Product>("Products");
+            _productRepository = productRespository;
         }
 
         public async Task<List<FavoriteItemDto>> GetUserFavoritesAsync(string userId)
@@ -32,7 +34,7 @@ namespace Food_Market_BE.Modules.FavoriteModule.Services.Implementations
 
             foreach (var favorite in favorites)
             {
-                var product = await _products.Find(x => x.Id == favorite.ProductId).FirstOrDefaultAsync();
+                var product = await _productRepository.GetByIdAsync(favorite.ProductId);
                 if (product == null) continue;
 
                 result.Add(new FavoriteItemDto
@@ -54,7 +56,7 @@ namespace Food_Market_BE.Modules.FavoriteModule.Services.Implementations
             if (string.IsNullOrWhiteSpace(productId))
                 throw new Exception("ProductId is required.");
 
-            var product = await _products.Find(x => x.Id == productId).FirstOrDefaultAsync();
+            var product = await _productRepository.GetByIdAsync(productId);
             if (product == null)
                 throw new Exception("Product does not exist.");
 

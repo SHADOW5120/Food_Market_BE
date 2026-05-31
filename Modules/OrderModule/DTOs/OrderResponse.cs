@@ -4,7 +4,7 @@
     {
         public string OrderId { get; set; } = default!;
 
-        public string Status { get; set; } = default!;
+        public OrderStatus Status { get; set; } = default!;
 
         public decimal TotalPrice { get; set; }
 

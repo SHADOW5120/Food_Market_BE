@@ -3,14 +3,11 @@ using Food_Market_BE.Modules.CategoryModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.ProductModule.DTOs.Media;
 using Food_Market_BE.Modules.ProductModule.DTOs.Options;
 using Food_Market_BE.Modules.ProductModule.DTOs.Product;
-using Food_Market_BE.Modules.ProductModule.Helpers;
 using Food_Market_BE.Modules.ProductModule.Models.Media;
 using Food_Market_BE.Modules.ProductModule.Models.Options;
 using Food_Market_BE.Modules.ProductModule.Models.Product;
 using Food_Market_BE.Modules.ProductModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.ProductModule.Services.Interfaces;
-using Food_Market_BE.Modules.StoreModule.Repositories.Interfaces;
-using MongoDB.Driver.Core.Servers;
 
 namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
 {
@@ -18,163 +15,54 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IStoreRepository _storeRepository;
 
         public ProductService(
             IProductRepository productRepository,
-            ICategoryRepository categoryRepository,
-            IStoreRepository storeRepository)
+            ICategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
-            _storeRepository = storeRepository;
         }
 
+        // =========================
+        // LIST PRODUCTS (PUBLIC)
+        // =========================
         public async Task<PagedProductResponse> GetProductsAsync(GetProductQueryDto query)
         {
-            var products = await _productRepository.GetAllAsync();
+            var products = await _productRepository.SearchAsync(query);
 
-            products = products.Where(x => !x.IsDeleted && x.IsAvailable).ToList();
-
-            if (!string.IsNullOrWhiteSpace(query.CategoryId))
-                products = products.Where(x => x.CategoryId == query.CategoryId).ToList();
-
-            if (query.MinPrice.HasValue)
-                products = products.Where(x => x.Price >= query.MinPrice.Value).ToList();
-
-            if (query.MaxPrice.HasValue)
-                products = products.Where(x => x.Price <= query.MaxPrice.Value).ToList();
-
-            if (!string.IsNullOrWhiteSpace(query.Search))
-                products = products.Where(x => x.Name.ToLower().Contains(query.Search.ToLower())).ToList();
-
-            var sorted = ProductSortHelper.ApplySort(products, query.Sort).ToList();
-
-            var total = sorted.Count;
-
-            var items = sorted
-                .Skip((query.Page - 1) * query.PageSize)
-                .Take(query.PageSize)
-                .Select(x => new ProductDto
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Price = x.Price,
-                    IsAvailable = x.IsAvailable,
-                    ImageUrl = x.Images.FirstOrDefault(i => i.IsPrimary)?.ImageUrl
-                })
-                .ToList();
-
-            return new PagedProductResponse
-            {
-                Items = items,
-                Total = total,
-                Page = query.Page,
-                PageSize = query.PageSize
-            };
+            return MapPaged(products, query);
         }
 
+        // =========================
+        // SELLER PRODUCTS
+        // =========================
         public async Task<PagedProductResponse> GetSellerProductsAsync(string sellerId, GetProductQueryDto query)
         {
-            //var products = await _productRepository.GetAllAsync();
+            var page = query.Page;
 
-            var stores = await _storeRepository.GetAllAsync();
+            var products = await _productRepository.GetBySellerIdAsync(sellerId);
 
-            var sellerStoreIds = stores
-                .Where(x => x.SellerId == sellerId)
-                .Select(x => x.Id)
-                .ToList();
+            var filtered = ApplyCommonFilters(products, query);
 
-            var products = await _productRepository.GetAllAsync();
-
-            products = products
-                .Where(x => sellerStoreIds.Contains(x.StoreId) && !x.IsDeleted)
-                .ToList();
-
-            products = products.Where(x => x.StoreId == sellerId && !x.IsDeleted).ToList();
-
-            if (!string.IsNullOrWhiteSpace(query.CategoryId))
-                products = products.Where(x => x.CategoryId == query.CategoryId).ToList();
-
-            if (query.MinPrice.HasValue)
-                products = products.Where(x => x.Price >= query.MinPrice.Value).ToList();
-
-            if (query.MaxPrice.HasValue)
-                products = products.Where(x => x.Price <= query.MaxPrice.Value).ToList();
-
-            if (!string.IsNullOrWhiteSpace(query.Search))
-                products = products.Where(x => x.Name.ToLower().Contains(query.Search.ToLower())).ToList();
-
-            var sorted = ProductSortHelper.ApplySort(products, query.Sort).ToList();
-
-            var total = sorted.Count;
-
-            var items = sorted
-                .Skip((query.Page - 1) * query.PageSize)
-                .Take(query.PageSize)
-                .Select(x => new ProductDto
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Price = x.Price,
-                    IsAvailable = x.IsAvailable,
-                    ImageUrl = x.Images.FirstOrDefault(i => i.IsPrimary)?.ImageUrl
-                })
-                .ToList();
-
-            return new PagedProductResponse
-            {
-                Items = items,
-                Total = total,
-                Page = query.Page,
-                PageSize = query.PageSize
-            };
+            return MapPaged(filtered, query);
         }
 
-        public async Task<PagedProductResponse> GetStoreProductsAsync(string StoreId, GetProductQueryDto query)
+        // =========================
+        // STORE PRODUCTS
+        // =========================
+        public async Task<PagedProductResponse> GetStoreProductsAsync(string storeId, GetProductQueryDto query)
         {
-            var products = await _productRepository.GetAllAsync();
+            var products = await _productRepository.GetByStoreIdAsync(storeId);
 
-            products = products.Where(x => x.StoreId == StoreId && !x.IsDeleted).ToList();
+            var filtered = ApplyCommonFilters(products, query);
 
-            if (!string.IsNullOrWhiteSpace(query.CategoryId))
-                products = products.Where(x => x.CategoryId == query.CategoryId).ToList();
-
-            if (query.MinPrice.HasValue)
-                products = products.Where(x => x.Price >= query.MinPrice.Value).ToList();
-
-            if (query.MaxPrice.HasValue)
-                products = products.Where(x => x.Price <= query.MaxPrice.Value).ToList();
-
-            if (!string.IsNullOrWhiteSpace(query.Search))
-                products = products.Where(x => x.Name.ToLower().Contains(query.Search.ToLower())).ToList();
-
-            var sorted = ProductSortHelper.ApplySort(products, query.Sort).ToList();
-
-            var total = sorted.Count;
-
-            var items = sorted
-                .Skip((query.Page - 1) * query.PageSize)
-                .Take(query.PageSize)
-                .Select(x => new ProductDto
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Price = x.Price,
-                    IsAvailable = x.IsAvailable,
-                    ImageUrl = x.Images.FirstOrDefault(i => i.IsPrimary)?.ImageUrl
-                })
-                .ToList();
-
-            return new PagedProductResponse
-            {
-                Items = items,
-                Total = total,
-                Page = query.Page,
-                PageSize = query.PageSize
-            };
+            return MapPaged(filtered, query);
         }
 
+        // =========================
+        // DETAIL
+        // =========================
         public async Task<ProductDetailDto?> GetByIdAsync(string id)
         {
             var product = await _productRepository.GetByIdAsync(id);
@@ -190,6 +78,8 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
                 Name = product.Name,
                 Description = product.Description,
                 Price = product.Price,
+                IsAvailable = product.IsAvailable,
+                CreatedAt = product.CreatedAt,
 
                 Images = product.Images?.Select(i => new ProductImgDto
                 {
@@ -212,9 +102,6 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
                     }).ToList() ?? new()
                 }).ToList() ?? new(),
 
-                IsAvailable = product.IsAvailable,
-                CreatedAt = product.CreatedAt,
-
                 Category = new CategoryDto
                 {
                     Id = category?.Id ?? "",
@@ -223,6 +110,9 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             };
         }
 
+        // =========================
+        // CREATE
+        // =========================
         public async Task<ProductDetailDto> CreateAsync(string storeId, CreateProductRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.Name))
@@ -274,17 +164,18 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
 
             await _productRepository.CreateAsync(product);
 
-            return await GetByIdAsync(product.Id) ?? throw new Exception("Create failed");
+            return await GetByIdAsync(product.Id)
+                   ?? throw new Exception("Create failed");
         }
 
+        // =========================
+        // UPDATE
+        // =========================
         public async Task<bool> UpdateAsync(string storeId, string productId, UpdateProductRequest request)
         {
             var product = await _productRepository.GetByIdAsync(productId);
 
-            if (product == null || product.IsDeleted)
-                return false;
-
-            if (product.StoreId != storeId)
+            if (product == null || product.IsDeleted || product.StoreId != storeId)
                 return false;
 
             var category = await _categoryRepository.GetByIdAsync(request.CategoryId);
@@ -301,14 +192,14 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             return true;
         }
 
+        // =========================
+        // DELETE (soft delete)
+        // =========================
         public async Task<bool> DeleteAsync(string storeId, string productId)
         {
             var product = await _productRepository.GetByIdAsync(productId);
 
-            if (product == null || product.IsDeleted)
-                return false;
-
-            if (product.StoreId != storeId)
+            if (product == null || product.IsDeleted || product.StoreId != storeId)
                 return false;
 
             product.IsDeleted = true;
@@ -318,14 +209,14 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             return true;
         }
 
+        // =========================
+        // TOGGLE AVAILABILITY
+        // =========================
         public async Task<bool> ToggleAvailabilityAsync(string storeId, string productId)
         {
             var product = await _productRepository.GetByIdAsync(productId);
 
-            if (product == null || product.IsDeleted)
-                return false;
-
-            if (product.StoreId != storeId)
+            if (product == null || product.IsDeleted || product.StoreId != storeId)
                 return false;
 
             product.IsAvailable = !product.IsAvailable;
@@ -335,6 +226,9 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             return true;
         }
 
+        // =========================
+        // OPTIONS
+        // =========================
         public async Task<bool> AddOptionAsync(string productId, CreateProductOptRequest request)
         {
             var product = await _productRepository.GetByIdAsync(productId);
@@ -345,7 +239,6 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             var option = new ProductOpt
             {
                 Id = Guid.NewGuid().ToString(),
-                FoodId = productId, // Assuming FoodId is ProductId
                 Name = request.Name,
                 IsRequired = request.IsRequired,
                 IsMultiple = request.IsMultiple,
@@ -353,22 +246,18 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
                 Values = request.Values?.Select(v => new ProductOptValue
                 {
                     Id = Guid.NewGuid().ToString(),
-                    OptionId = Guid.NewGuid().ToString(), // This should be the option's Id, but since it's new, set after
+                    OptionId = Guid.NewGuid().ToString(),
                     Name = v.Name,
                     PriceModifier = v.PriceModifier,
                     CreatedAt = DateTime.UtcNow
                 }).ToList() ?? new()
             };
 
-            // Set the OptionId for values
-            foreach (var value in option.Values)
-            {
-                value.OptionId = option.Id;
-            }
+            foreach (var v in option.Values)
+                v.OptionId = option.Id;
 
             product.Options ??= new List<ProductOpt>();
             product.Options.Add(option);
-            product.UpdatedAt = DateTime.UtcNow;
 
             await _productRepository.UpdateAsync(product);
             return true;
@@ -381,7 +270,7 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             if (product == null || product.IsDeleted)
                 return false;
 
-            var option = product.Options?.FirstOrDefault(o => o.Id == optionId);
+            var option = product.Options?.FirstOrDefault(x => x.Id == optionId);
             if (option == null)
                 return false;
 
@@ -389,7 +278,6 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             option.IsRequired = request.IsRequired;
             option.IsMultiple = request.IsMultiple;
 
-            // Update values - for simplicity, replace all
             option.Values = request.Values?.Select(v => new ProductOptValue
             {
                 Id = Guid.NewGuid().ToString(),
@@ -398,8 +286,6 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
                 PriceModifier = v.PriceModifier,
                 CreatedAt = DateTime.UtcNow
             }).ToList() ?? new();
-
-            product.UpdatedAt = DateTime.UtcNow;
 
             await _productRepository.UpdateAsync(product);
             return true;
@@ -412,12 +298,11 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             if (product == null || product.IsDeleted)
                 return false;
 
-            var option = product.Options?.FirstOrDefault(o => o.Id == optionId);
+            var option = product.Options?.FirstOrDefault(x => x.Id == optionId);
             if (option == null)
                 return false;
 
-            product.Options?.Remove(option);
-            product.UpdatedAt = DateTime.UtcNow;
+            product.Options.Remove(option);
 
             await _productRepository.UpdateAsync(product);
             return true;
@@ -428,7 +313,7 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             var product = await _productRepository.GetByIdAsync(productId);
 
             if (product == null || product.IsDeleted)
-                return new List<ProductOptDto>();
+                return new();
 
             return product.Options?.Select(o => new ProductOptDto
             {
@@ -444,6 +329,47 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
                     PriceModifier = v.PriceModifier
                 }).ToList() ?? new()
             }).ToList() ?? new();
+        }
+
+        // =========================
+        // PRIVATE HELPERS
+        // =========================
+        private static PagedProductResponse MapPaged(List<Product> products, GetProductQueryDto query)
+        {
+            var total = products.Count;
+
+            var items = products
+                .Skip((query.Page - 1) * query.PageSize)
+                .Take(query.PageSize)
+                .Select(x => new ProductDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Price = x.Price,
+                    IsAvailable = x.IsAvailable,
+                    ImageUrl = x.Images.FirstOrDefault(i => i.IsPrimary)?.ImageUrl
+                })
+                .ToList();
+
+            return new PagedProductResponse
+            {
+                Items = items,
+                Total = total,
+                Page = query.Page,
+                PageSize = query.PageSize
+            };
+        }
+
+        private static List<Product> ApplyCommonFilters(List<Product> products, GetProductQueryDto query)
+        {
+            return products
+                .Where(x => !x.IsDeleted)
+                .Where(x => string.IsNullOrWhiteSpace(query.CategoryId) || x.CategoryId == query.CategoryId)
+                .Where(x => !query.MinPrice.HasValue || x.Price >= query.MinPrice.Value)
+                .Where(x => !query.MaxPrice.HasValue || x.Price <= query.MaxPrice.Value)
+                .Where(x => string.IsNullOrWhiteSpace(query.Search) ||
+                            x.Name.Contains(query.Search, StringComparison.OrdinalIgnoreCase))
+                .ToList();
         }
     }
 }

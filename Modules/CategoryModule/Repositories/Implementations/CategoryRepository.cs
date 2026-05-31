@@ -16,7 +16,10 @@ namespace Food_Market_BE.Modules.CategoryModule.Repositories.Implementations
 
         public async Task<List<Category>> GetAllAsync()
         {
-            return await _collection.Find(_ => true).ToListAsync();
+            return await _collection
+                .Find(_ => true)
+                .SortBy(x => x.Name)
+                .ToListAsync();
         }
 
         public async Task<Category?> GetByIdAsync(string id)

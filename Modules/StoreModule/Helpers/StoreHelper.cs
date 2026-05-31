@@ -35,31 +35,19 @@ namespace Food_Market_BE.Modules.StoreModule.Helpers
             };
         }
 
-        public static StoreListItemDto ToStoreListItemDto(Store store, int totalProducts)
+        public static StoreResponse ToStoreListItemDto(Store store)
         {
-            return new StoreListItemDto
+            return new StoreResponse
             {
                 Id = store.Id,
                 Name = store.Name,
                 LogoUrl = store.LogoUrl,
                 Rating = store.Rating,
-                ShortDescription = TruncateDescription(store.Description),
-                TotalProducts = totalProducts,
+                Description = TruncateDescription(store.Description),
+                //TotalProducts = totalProducts,
                 IsOpen = store.IsOpen
             };
         }
 
-        public static List<StoreCategoryDto> ExtractCategories(List<StoreProductDto> products)
-        {
-            return products
-                .Where(x => !string.IsNullOrWhiteSpace(x.CategoryId) && !string.IsNullOrWhiteSpace(x.CategoryName))
-                .GroupBy(x => new { x.CategoryId, x.CategoryName })
-                .Select(g => new StoreCategoryDto
-                {
-                    Id = g.Key.CategoryId!,
-                    Name = g.Key.CategoryName!
-                })
-                .ToList();
-        }
     }
 }

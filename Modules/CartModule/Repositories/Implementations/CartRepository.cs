@@ -19,6 +19,11 @@ namespace Food_Market_BE.Modules.CartModule.Repositories.Implementations
             return await _cartCollection.Find(x => x.UserId == userId).FirstOrDefaultAsync();
         }
 
+        public async Task<Cart?> GetByIdAndUserIdAsync(string cartId, string userId)
+        {
+            return await _cartCollection.Find(x => x.Id == cartId && x.UserId == userId).FirstOrDefaultAsync();
+        }
+
         public async Task<Cart> CreateAsync(Cart cart)
         {
             await _cartCollection.InsertOneAsync(cart);
@@ -27,6 +32,8 @@ namespace Food_Market_BE.Modules.CartModule.Repositories.Implementations
 
         public async Task UpdateAsync(Cart cart)
         {
+            cart.UpdatedAt = DateTime.UtcNow;
+
             await _cartCollection.ReplaceOneAsync(x => x.Id == cart.Id, cart);
         }
 

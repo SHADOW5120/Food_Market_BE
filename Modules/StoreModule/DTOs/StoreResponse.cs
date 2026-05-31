@@ -9,8 +9,5 @@
         public string? Description { get; set; }
         public double Rating { get; set; }
         public bool IsOpen { get; set; }
-
-        public List<StoreCategoryDto> Categories { get; set; } = new();
-        public List<StoreProductDto> Products { get; set; } = new();
     }
 }

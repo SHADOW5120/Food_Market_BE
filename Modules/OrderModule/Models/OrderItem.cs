@@ -17,7 +17,7 @@ namespace Food_Market_BE.Modules.OrderModule.Models
         public string? ProductImage { get; set; }
 
         // Giá gốc của món tại thời điểm order
-        public decimal Price { get; set; }
+        public decimal UnitPrice { get; set; }
 
         public int Quantity { get; set; }
 

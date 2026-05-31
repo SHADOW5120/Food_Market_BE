@@ -34,11 +34,14 @@ namespace Food_Market_BE.Modules.OrderModule.Repositories.Implementations
             return (orders, totalCount);
         }
 
-        public async Task<List<Order>> GetAllAsync(int page, int pageSize, string? status = null)
+        public async Task<List<Order>> GetAllAsync(
+            int page,
+            int pageSize,
+            OrderStatus? status = null)
         {
-            var filter = string.IsNullOrWhiteSpace(status)
+            var filter = status == null
                 ? Builders<Order>.Filter.Empty
-                : Builders<Order>.Filter.Eq(x => x.Status, status);
+                : Builders<Order>.Filter.Eq(x => x.Status, status.Value);
 
             return await _orders.Find(filter)
                 .SortByDescending(x => x.CreatedAt)
@@ -57,7 +60,7 @@ namespace Food_Market_BE.Modules.OrderModule.Repositories.Implementations
             await _orders.ReplaceOneAsync(x => x.Id == order.Id, order);
         }
 
-        public async Task<bool> UpdateStatusAsync(string orderId, string newStatus)
+        public async Task<bool> UpdateStatusAsync(string orderId, OrderStatus newStatus)
         {
             var update = Builders<Order>.Update
                 .Set(x => x.Status, newStatus)

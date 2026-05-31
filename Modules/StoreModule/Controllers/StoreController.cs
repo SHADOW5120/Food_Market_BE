@@ -17,16 +17,16 @@ namespace Food_Market_BE.Modules.StoreModule.Controllers
             _storeService = storeService;
         }
 
+        // =========================
+        // PUBLIC
+        // =========================
+
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> GetStores([FromQuery] GetStoreQueryDto query)
+        public async Task<IActionResult> GetStores(
+            [FromQuery] GetStoreQueryDto query)
         {
-            var result = await _storeService.GetStoresAsync(
-                query.Page,
-                query.PageSize,
-                query.Search,
-                query.MinRating);
-
+            var result = await _storeService.GetStoresAsync(query);
             return Ok(result);
         }
 
@@ -34,63 +34,105 @@ namespace Food_Market_BE.Modules.StoreModule.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetStoreById(string id)
         {
-            var result = await _storeService.GetStoreDetailAsync(id);
+            var result = await _storeService.GetStoreByIdAsync(id);
+
             if (result == null)
-                throw new Exception("Store not found");
+                return NotFound(new
+                {
+                    message = "Store not found"
+                });
 
             return Ok(result);
         }
 
-        [HttpGet("{id}/products")]
+        [HttpGet("seller/{sellerId}")]
         [AllowAnonymous]
-        public async Task<IActionResult> GetStoreProducts(string id)
+        public async Task<IActionResult> GetStoreBySellerId(
+            string sellerId,
+            [FromQuery] GetStoreQueryDto query)
         {
-            var result = await _storeService.GetStoreProductsAsync(id);
+            var result = await _storeService.GetStoreBySellerIdAsync(
+                sellerId,
+                query);
+
             return Ok(result);
         }
+
+        // =========================
+        // CREATE
+        // =========================
 
         [HttpPost]
         [Authorize(Roles = UserRole.Seller + "," + UserRole.Admin)]
-        public async Task<IActionResult> CreateStore([FromBody] CreateStoreRequest request)
+        public async Task<IActionResult> CreateStore(
+            [FromBody] CreateStoreRequest request)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var role = User.FindFirstValue(ClaimTypes.Role);
+            var userId = User.FindFirstValue(
+                ClaimTypes.NameIdentifier);
 
-            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(role))
-                throw new Exception("Unauthorized");
+            if (string.IsNullOrWhiteSpace(userId))
+                return Unauthorized();
 
-            var result = await _storeService.CreateStoreAsync(request, userId);
+            var result = await _storeService.CreateStoreAsync(
+                request,
+                userId);
+
             return Ok(result);
         }
+
+        // =========================
+        // UPDATE
+        // =========================
 
         [HttpPut("{id}")]
         [Authorize(Roles = UserRole.Seller + "," + UserRole.Admin)]
-        public async Task<IActionResult> UpdateStore(string id, [FromBody] UpdateStoreRequest request)
+        public async Task<IActionResult> UpdateStore(
+            string id,
+            [FromBody] UpdateStoreRequest request)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var role = User.FindFirstValue(ClaimTypes.Role);
+            var userId = User.FindFirstValue(
+                ClaimTypes.NameIdentifier);
 
-            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(role))
-                throw new Exception("Unauthorized");
+            if (string.IsNullOrWhiteSpace(userId))
+                return Unauthorized();
 
-            var result = await _storeService.UpdateStoreAsync(id, request, userId);
+            var result = await _storeService.UpdateStoreAsync(
+                id,
+                request,
+                userId);
+
             return Ok(result);
         }
+
+        // =========================
+        // DELETE
+        // =========================
 
         [HttpDelete("{id}")]
         [Authorize(Roles = UserRole.Seller + "," + UserRole.Admin)]
         public async Task<IActionResult> DeleteStore(string id)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var role = User.FindFirstValue(ClaimTypes.Role);
+            var userId = User.FindFirstValue(
+                ClaimTypes.NameIdentifier);
 
-            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(role))
-                throw new Exception("Unauthorized");
+            if (string.IsNullOrWhiteSpace(userId))
+                return Unauthorized();
 
-            var result = await _storeService.DeleteStoreAsync(id, userId);
+            var result = await _storeService.DeleteStoreAsync(
+                id,
+                userId);
+
+            if (!result)
+            {
+                return NotFound(new
+                {
+                    message = "Store not found"
+                });
+            }
+
             return Ok(new
             {
-                success = result,
+                success = true,
                 message = "Store deleted successfully"
             });
         }

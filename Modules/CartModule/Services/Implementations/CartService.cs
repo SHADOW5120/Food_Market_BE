@@ -3,23 +3,24 @@ using Food_Market_BE.Modules.CartModule.Helpers;
 using Food_Market_BE.Modules.CartModule.Models;
 using Food_Market_BE.Modules.CartModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.CartModule.Services.Interfaces;
-using Food_Market_BE.Modules.ProductModule.Models.Product;
-using Food_Market_BE.Shared.Database;
-using MongoDB.Driver;
+using Food_Market_BE.Modules.ProductModule.Repositories.Interfaces;
 
 namespace Food_Market_BE.Modules.CartModule.Services.Implementations
 {
     public class CartService : ICartService
     {
         private readonly ICartRepository _cartRepository;
-        private readonly IMongoCollection<Product> _productCollection;
+        //private readonly IMongoCollection<Product> _productCollection;
+        private readonly IProductRepository _productRepository;
 
         public CartService(
             ICartRepository cartRepository,
-            MongoDbContext database)
+            //MongoDbContext database,
+            IProductRepository productRepository)
         {
             _cartRepository = cartRepository;
-            _productCollection = database.GetCollection<Product>("Products");
+            //_productCollection = database.GetCollection<Product>("Products");
+            _productRepository = productRepository;
         }
 
         public async Task<CartResponse> GetCartAsync(string userId)
@@ -40,9 +41,7 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
 
         public async Task<CartResponse> AddToCartAsync(string userId, AddToCartRequest request)
         {
-            var product = await _productCollection
-                .Find(x => x.Id == request.ProductId && x.IsAvailable && !x.IsDeleted)
-                .FirstOrDefaultAsync();
+            var product = await _productRepository.GetByIdAsync(request.ProductId);
 
             if (product == null)
             {
@@ -160,9 +159,7 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
             }
             else
             {
-                var product = await _productCollection
-                    .Find(x => x.Id == productId && x.IsAvailable && !x.IsDeleted)
-                    .FirstOrDefaultAsync();
+                var product = await _productRepository.GetByIdAsync(productId);
 
                 if (product == null)
                 {
@@ -215,7 +212,7 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
                 {
                     UserId = userId,
                     Items = new List<CartItem>(),
-                    TotalPrice = 0
+                    //TotalPrice = 0
                 };
 
                 await _cartRepository.CreateAsync(cart);

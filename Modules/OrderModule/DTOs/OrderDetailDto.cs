@@ -8,9 +8,9 @@
 
         public string CartId { get; set; } = default!;
 
-        public string Status { get; set; } = default!;
+        public OrderStatus Status { get; set; } = default!;
 
-        public string DeliveryAddress { get; set; } = default!;
+        public DeliveryAddress DeliveryAddress { get; set; } = default!;
 
         public string PaymentMethod { get; set; } = default!;
 
