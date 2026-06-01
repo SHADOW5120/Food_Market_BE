@@ -38,8 +38,10 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier)
-                          ?? throw new Exception("Unauthorized");
+                          ?? throw new UnauthorizedAccessException("Unauthorized");
 
             var result = await _productService.CreateAsync(sellerId, request);
             return Ok(result);
@@ -49,8 +51,10 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody] UpdateProductRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier)
-                          ?? throw new Exception("Unauthorized");
+                          ?? throw new UnauthorizedAccessException("Unauthorized");
 
             var success = await _productService.UpdateAsync(sellerId, id, request);
 
@@ -65,7 +69,7 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier)
-                          ?? throw new Exception("Unauthorized");
+                          ?? throw new UnauthorizedAccessException("Unauthorized");
 
             var success = await _productService.DeleteAsync(sellerId, id);
 
@@ -80,7 +84,7 @@ namespace Food_Market_BE.Modules.ProductModule.Controllers
         public async Task<IActionResult> ToggleAvailability(string id)
         {
             var sellerId = User.FindFirstValue(ClaimTypes.NameIdentifier)
-                          ?? throw new Exception("Unauthorized");
+                          ?? throw new UnauthorizedAccessException("Unauthorized");
 
             var success = await _productService.ToggleAvailabilityAsync(sellerId, id);
 

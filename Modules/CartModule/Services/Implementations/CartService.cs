@@ -41,11 +41,13 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
 
         public async Task<CartResponse> AddToCartAsync(string userId, AddToCartRequest request)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             var product = await _productRepository.GetByIdAsync(request.ProductId);
 
             if (product == null)
             {
-                throw new Exception("Product not found or unavailable.");
+                throw new InvalidOperationException("Product not found or unavailable.");
             }
 
             // Validate selected options
@@ -55,15 +57,15 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
                 foreach (var selectedOpt in request.SelectedOptions)
                 {
                     var productOpt = product.Options.FirstOrDefault(o => o.Id == selectedOpt.OptionId);
-                    if (productOpt == null)
-                    {
-                        throw new Exception($"Option {selectedOpt.OptionId} not found for this product.");
-                    }
+                        if (productOpt == null)
+                        {
+                            throw new ArgumentException($"Option {selectedOpt.OptionId} not found for this product.");
+                        }
 
                     var value = productOpt.Values.FirstOrDefault(v => v.Id == selectedOpt.ValueId);
                     if (value == null)
                     {
-                        throw new Exception($"Value {selectedOpt.ValueId} not found for option {selectedOpt.OptionId}.");
+                        throw new ArgumentException($"Value {selectedOpt.ValueId} not found for option {selectedOpt.OptionId}.");
                     }
 
                     cartItemOpts.Add(new CartItemOpt
@@ -124,6 +126,9 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
 
         private bool OptionsMatch(List<CartItemOpt> existingOpts, List<CartItemOpt> newOpts)
         {
+            existingOpts = existingOpts ?? new List<CartItemOpt>();
+            newOpts = newOpts ?? new List<CartItemOpt>();
+
             if (existingOpts.Count != newOpts.Count)
                 return false;
 
@@ -143,14 +148,14 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
 
             if (cart == null)
             {
-                throw new Exception("Cart not found.");
+                throw new InvalidOperationException("Cart not found.");
             }
 
             var item = cart.Items.FirstOrDefault(x => x.ProductId == productId);
 
             if (item == null)
             {
-                throw new Exception("Item not found in cart.");
+                throw new InvalidOperationException("Item not found in cart.");
             }
 
             if (request.Quantity == 0)
@@ -163,7 +168,7 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
 
                 if (product == null)
                 {
-                    throw new Exception("Product not found or unavailable.");
+                    throw new InvalidOperationException("Product not found or unavailable.");
                 }
 
                 item.Quantity = request.Quantity;
@@ -184,14 +189,14 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
 
             if (cart == null)
             {
-                throw new Exception("Cart not found.");
+                throw new InvalidOperationException("Cart not found.");
             }
 
             var item = cart.Items.FirstOrDefault(x => x.ProductId == productId);
 
             if (item == null)
             {
-                throw new Exception("Item not found in cart.");
+                throw new InvalidOperationException("Item not found in cart.");
             }
 
             cart.Items.Remove(item);
@@ -233,7 +238,7 @@ namespace Food_Market_BE.Modules.CartModule.Services.Implementations
 
             if (cart == null || !cart.Items.Any())
             {
-                throw new Exception("Cart is empty.");
+                throw new InvalidOperationException("Cart is empty.");
             }
 
             return "Checkout flow will be implemented in OrderModule.";

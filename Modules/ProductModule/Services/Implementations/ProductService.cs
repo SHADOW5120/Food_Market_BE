@@ -115,15 +115,17 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
         // =========================
         public async Task<ProductDetailDto> CreateAsync(string storeId, CreateProductRequest request)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             if (string.IsNullOrWhiteSpace(request.Name))
-                throw new Exception("Product name is required");
+                throw new ArgumentException("Product name is required", nameof(request.Name));
 
             if (request.Price <= 0)
-                throw new Exception("Price must be greater than 0");
+                throw new ArgumentOutOfRangeException(nameof(request.Price), "Price must be greater than 0");
 
             var category = await _categoryRepository.GetByIdAsync(request.CategoryId);
-            if (category == null)
-                throw new Exception("Category not found");
+                if (category == null)
+                    throw new InvalidOperationException("Category not found");
 
             var product = new Product
             {
@@ -162,10 +164,10 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
                 }).ToList() ?? new()
             };
 
-            await _productRepository.CreateAsync(product);
+                 await _productRepository.CreateAsync(product);
 
-            return await GetByIdAsync(product.Id)
-                   ?? throw new Exception("Create failed");
+                 return await GetByIdAsync(product.Id)
+                     ?? throw new InvalidOperationException("Create failed");
         }
 
         // =========================
@@ -179,8 +181,8 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
                 return false;
 
             var category = await _categoryRepository.GetByIdAsync(request.CategoryId);
-            if (category == null)
-                throw new Exception("Category not found");
+                if (category == null)
+                    throw new InvalidOperationException("Category not found");
 
             product.Name = request.Name.Trim();
             product.Description = request.Description;

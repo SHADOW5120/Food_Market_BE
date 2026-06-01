@@ -93,15 +93,20 @@ namespace Food_Market_BE.Modules.VoucherModule.Services.Implementations
 
         public async Task<VoucherDto> CreateVoucherAsync(CreateVoucherRequest request)
         {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
             ValidateVoucherRequest(request);
 
-            var existingVoucher = await _voucherRepository.GetVoucherByCodeAsync(request.Code);
+            var codeNorm = request.Code?.Trim().ToUpper() ?? throw new ArgumentException("Code is required", nameof(request.Code));
+
+            var existingVoucher = await _voucherRepository.GetVoucherByCodeAsync(codeNorm);
             if (existingVoucher != null)
-                throw new Exception("Voucher code đã tồn tại");
+                throw new InvalidOperationException("Voucher code already exists");
 
             var voucher = new Voucher
             {
-                Code = request.Code.Trim().ToUpper(),
+                Code = codeNorm,
                 Description = request.Description,
                 DiscountAmount = request.DiscountAmount,
                 DiscountPercent = request.DiscountPercent,
@@ -120,17 +125,22 @@ namespace Food_Market_BE.Modules.VoucherModule.Services.Implementations
 
         public async Task<VoucherDto> UpdateVoucherAsync(string voucherId, CreateVoucherRequest request)
         {
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
+
             ValidateVoucherRequest(request);
 
             var voucher = await _voucherRepository.GetVoucherByIdAsync(voucherId);
             if (voucher == null)
-                throw new Exception("Voucher không tồn tại");
+                throw new InvalidOperationException("Voucher not found");
 
-            var existingVoucher = await _voucherRepository.GetVoucherByCodeAsync(request.Code);
+            var codeNorm = request.Code?.Trim().ToUpper() ?? throw new ArgumentException("Code is required", nameof(request.Code));
+
+            var existingVoucher = await _voucherRepository.GetVoucherByCodeAsync(codeNorm);
             if (existingVoucher != null && existingVoucher.Id != voucherId)
-                throw new Exception("Voucher code đã tồn tại");
+                throw new InvalidOperationException("Voucher code already exists");
 
-            voucher.Code = request.Code.Trim().ToUpper();
+            voucher.Code = codeNorm;
             voucher.Description = request.Description;
             voucher.DiscountAmount = request.DiscountAmount;
             voucher.DiscountPercent = request.DiscountPercent;
@@ -185,13 +195,13 @@ namespace Food_Market_BE.Modules.VoucherModule.Services.Implementations
             var hasPercent = request.DiscountPercent.HasValue && request.DiscountPercent.Value > 0;
 
             if (!hasAmount && !hasPercent)
-                throw new Exception("Voucher phải có DiscountAmount hoặc DiscountPercent");
+                throw new ArgumentException("Voucher must have either DiscountAmount or DiscountPercent");
 
             if (hasAmount && hasPercent)
-                throw new Exception("Voucher chỉ được có 1 loại giảm giá: số tiền hoặc phần trăm");
+                throw new ArgumentException("Voucher can only have one type of discount: amount or percent");
 
             if (request.ExpiryDate <= DateTime.UtcNow)
-                throw new Exception("ExpiryDate phải lớn hơn thời gian hiện tại");
+                throw new ArgumentException("ExpiryDate must be in the future");
         }
     }
 }

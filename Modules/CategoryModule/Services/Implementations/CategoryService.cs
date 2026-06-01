@@ -28,7 +28,7 @@ namespace Food_Market_BE.Modules.CategoryModule.Services.Implementations
         public async Task<CategoryDto> CreateAsync(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
-                throw new Exception("Category name is required");
+                throw new ArgumentException("Category name is required", nameof(name));
 
             var category = new Category
             {

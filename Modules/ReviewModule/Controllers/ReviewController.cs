@@ -64,6 +64,8 @@ namespace Food_Market_BE.Modules.ReviewModule.Controllers
         [HttpPost("reviews")]
         public async Task<IActionResult> CreateReview([FromBody] CreateReviewRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var userId = GetUserId();
             var result = await _reviewService.CreateReviewAsync(request, userId);
 
@@ -78,6 +80,8 @@ namespace Food_Market_BE.Modules.ReviewModule.Controllers
         [HttpPut("reviews/{id}")]
         public async Task<IActionResult> UpdateReview(string id, [FromBody] UpdateReviewRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var userId = GetUserId();
             var result = await _reviewService.UpdateReviewAsync(id, request, userId);
 
@@ -121,7 +125,7 @@ namespace Food_Market_BE.Modules.ReviewModule.Controllers
                          ?? User.FindFirst("id")?.Value;
 
             if (string.IsNullOrWhiteSpace(userId))
-                throw new Exception("Unauthorized.");
+                throw new UnauthorizedAccessException("Unauthorized.");
 
             return userId;
         }

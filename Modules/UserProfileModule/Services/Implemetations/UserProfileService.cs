@@ -44,7 +44,7 @@ namespace Food_Market_BE.Modules.UserProfileModule.Services.Implemetations
         public async Task<UserProfileResponse> GetMeAsync(string userId)
         {
             var user = await _userRepository.GetByIdAsync(userId)
-                ?? throw new Exception("User not found");
+                ?? throw new InvalidOperationException("User not found");
 
             var profile = await _profileRepository.GetByUserIdAsync(userId);
 
@@ -78,14 +78,16 @@ namespace Food_Market_BE.Modules.UserProfileModule.Services.Implemetations
 
         public async Task<UserProfileResponse> UpdateProfileAsync(string userId, UpdateUserProfileRequest req)
         {
+            if (req == null) throw new ArgumentNullException(nameof(req));
+
             var user = await _userRepository.GetByIdAsync(userId)
-                ?? throw new Exception("User not found");
+                ?? throw new InvalidOperationException("User not found");
 
             var profile = await _profileRepository.GetByUserIdAsync(userId)
                 ?? new UserProfile { UserId = userId };
 
             var oldAvatar = profile.AvatarUrl;
-            
+
             profile.Username = req.Username ?? profile.Username;
             profile.Phone = req.Phone ?? profile.Phone;
 
@@ -119,17 +121,19 @@ namespace Food_Market_BE.Modules.UserProfileModule.Services.Implemetations
 
         public async Task ChangePasswordAsync(string userId, ChangePasswordRequest req)
         {
+            if (req == null) throw new ArgumentNullException(nameof(req));
+
             var user = await _userRepository.GetByIdAsync(userId)
-                ?? throw new Exception("User not found");
+                ?? throw new InvalidOperationException("User not found");
 
-            if (!_hasher.Verify(req.CurrentPassword, user.PasswordHash))
-                throw new Exception("Wrong password");
+            if (string.IsNullOrEmpty(req.CurrentPassword) || !_hasher.Verify(req.CurrentPassword, user.PasswordHash))
+                throw new UnauthorizedAccessException("Current password is incorrect");
 
-            if (req.NewPassword.Length < 6)
-                throw new Exception("Password too short");
+            if (string.IsNullOrEmpty(req.NewPassword) || req.NewPassword.Length < 6)
+                throw new ArgumentException("New password must be at least 6 characters long", nameof(req.NewPassword));
 
             if (req.NewPassword != req.ConfirmNewPassword)
-                throw new Exception("Confirm mismatch");
+                throw new ArgumentException("New password and confirmation do not match", nameof(req.ConfirmNewPassword));
 
             user.PasswordHash = _hasher.Hash(req.NewPassword);
 

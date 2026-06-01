@@ -54,11 +54,11 @@ namespace Food_Market_BE.Modules.FavoriteModule.Services.Implementations
         public async Task<FavoriteItemDto> AddToFavoritesAsync(string userId, string productId)
         {
             if (string.IsNullOrWhiteSpace(productId))
-                throw new Exception("ProductId is required.");
+                throw new ArgumentException("ProductId is required.", nameof(productId));
 
             var product = await _productRepository.GetByIdAsync(productId);
             if (product == null)
-                throw new Exception("Product does not exist.");
+                throw new InvalidOperationException("Product does not exist.");
 
             var existingFavorite = await _favoriteRepository.GetFavoriteAsync(userId, productId);
 
@@ -98,24 +98,19 @@ namespace Food_Market_BE.Modules.FavoriteModule.Services.Implementations
         public async Task<bool> RemoveFromFavoritesAsync(string userId, string productId)
         {
             if (string.IsNullOrWhiteSpace(productId))
-                throw new Exception("ProductId is required.");
+                throw new ArgumentException("ProductId is required.", nameof(productId));
 
             return await _favoriteRepository.RemoveFavoriteAsync(userId, productId);
         }
 
         private string? GetProductImage(Product product)
         {
-            var imageProperty = product.GetType().GetProperty("ImageUrl");
-            if (imageProperty != null)
-            {
-                return imageProperty.GetValue(product)?.ToString();
-            }
+            if (product == null) return null;
 
-            var imagesProperty = product.GetType().GetProperty("Images");
-            if (imagesProperty != null)
+            if (product.Images != null && product.Images.Any())
             {
-                var images = imagesProperty.GetValue(product) as IEnumerable<string>;
-                return images?.FirstOrDefault();
+                return product.Images.FirstOrDefault(i => i.IsPrimary)?.ImageUrl
+                    ?? product.Images.FirstOrDefault()?.ImageUrl;
             }
 
             return null;

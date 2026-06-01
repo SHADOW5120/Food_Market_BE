@@ -73,6 +73,8 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
         // =========================
         public async Task<StoreResponse> CreateStoreAsync(CreateStoreRequest request, string userId)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             var store = new Store
             {
                 Name = request.Name,
@@ -100,10 +102,10 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
             var store = await _storeRepository.GetStoreByIdAsync(storeId);
 
             if (store == null || store.IsDeleted)
-                throw new Exception("Store not found");
+                throw new InvalidOperationException("Store not found");
 
             if (store.OwnerId != userId)
-                throw new Exception("You do not have permission");
+                throw new UnauthorizedAccessException("You do not have permission");
 
             if (!string.IsNullOrWhiteSpace(request.Name))
                 store.Name = request.Name;
@@ -139,7 +141,7 @@ namespace Food_Market_BE.Modules.StoreModule.Services.Implementations
                 return false;
 
             if (store.OwnerId != userId)
-                throw new Exception("You do not have permission");
+                throw new UnauthorizedAccessException("You do not have permission");
 
             await _storeRepository.DeleteStoreAsync(storeId);
             return true;

@@ -19,6 +19,8 @@ namespace Food_Market_BE.Modules.AuthModule.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest req)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var result = await _service.RegisterAsync(req);
             return Ok(ApiResponse<AuthResponse>.SuccessResponse(result));
         }
@@ -26,6 +28,8 @@ namespace Food_Market_BE.Modules.AuthModule.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest req)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var result = await _service.LoginAsync(req);
             return Ok(ApiResponse<AuthResponse>.SuccessResponse(result));
         }
@@ -33,6 +37,8 @@ namespace Food_Market_BE.Modules.AuthModule.Controllers
         [HttpPost("refresh")]
         public async Task<IActionResult> Refresh(RefreshTokenRequest req)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var result = await _service.RefreshAsync(req.RefreshToken);
             return Ok(ApiResponse<AuthResponse>.SuccessResponse(result));
         }
@@ -40,6 +46,8 @@ namespace Food_Market_BE.Modules.AuthModule.Controllers
         [HttpPost("forgot-password")]
         public async Task<IActionResult> Forgot(ForgotPasswordRequest req)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             await _service.ForgotPasswordAsync(req.Email);
             return Ok(ApiResponse<string>.SuccessResponse(null, "Password reset token sent if email exists"));
         }
@@ -47,6 +55,8 @@ namespace Food_Market_BE.Modules.AuthModule.Controllers
         [HttpPost("reset-password")]
         public async Task<IActionResult> Reset(ResetPasswordRequest req)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             await _service.ResetPasswordAsync(req);
             return Ok(ApiResponse<string>.SuccessResponse(null, "Password reset success"));
         }

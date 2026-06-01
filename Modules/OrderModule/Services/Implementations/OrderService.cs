@@ -23,13 +23,16 @@ namespace Food_Market_BE.Modules.OrderModule.Services.Implementations
 
         public async Task<OrderDetailDto> CreateOrderAsync(CreateOrderRequest request, string userId)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+            if (string.IsNullOrWhiteSpace(request.CartId)) throw new ArgumentException("CartId is required", nameof(request.CartId));
+
             var cart = await _cartRepository.GetByIdAndUserIdAsync(request.CartId, userId);
 
             if (cart == null)
-                throw new Exception("Cart not found.");
+                throw new InvalidOperationException("Cart not found.");
 
             if (cart.Items == null || !cart.Items.Any())
-                throw new Exception("Cart is empty.");
+                throw new InvalidOperationException("Cart is empty.");
 
             var orderItems = cart.Items.Select(item =>
             {
@@ -79,7 +82,7 @@ namespace Food_Market_BE.Modules.OrderModule.Services.Implementations
 
             // Clear cart after checkout
             cart.Items.Clear();
-            //cart.TotalPrice = 0;
+            cart.TotalPrice = 0m;
             cart.UpdatedAt = DateTime.UtcNow;
             await _cartRepository.UpdateAsync(cart);
 
@@ -107,7 +110,7 @@ namespace Food_Market_BE.Modules.OrderModule.Services.Implementations
                 return null;
 
             if (!isAdmin && order.UserId != userId)
-                throw new Exception("You are not allowed to view this order.");
+                throw new UnauthorizedAccessException("You are not allowed to view this order.");
 
             return MapToDetailDto(order);
         }
@@ -117,13 +120,13 @@ namespace Food_Market_BE.Modules.OrderModule.Services.Implementations
             var order = await _orderRepository.GetByIdAsync(orderId);
 
             if (order == null)
-                throw new Exception("Order not found.");
+                throw new InvalidOperationException("Order not found.");
 
             if (order.UserId != userId)
-                throw new Exception("You are not allowed to cancel this order.");
+                throw new UnauthorizedAccessException("You are not allowed to cancel this order.");
 
             if (order.Status != OrderStatus.Pending)
-                throw new Exception("Only pending orders can be cancelled.");
+                throw new InvalidOperationException("Only pending orders can be cancelled.");
 
             order.Status = OrderStatus.Cancelled;
             order.CancelledAt = DateTime.UtcNow;
@@ -138,10 +141,10 @@ namespace Food_Market_BE.Modules.OrderModule.Services.Implementations
             var order = await _orderRepository.GetByIdAsync(orderId);
 
             if (order == null)
-                throw new Exception("Order not found.");
+                throw new InvalidOperationException("Order not found.");
 
             if (!IsValidStatusTransition(order.Status, newStatus))
-                throw new Exception($"Cannot change status from '{order.Status}' to '{newStatus}'.");
+                throw new InvalidOperationException($"Cannot change status from '{order.Status}' to '{newStatus}'.");
 
             order.Status = newStatus;
             order.UpdatedAt = DateTime.UtcNow;
@@ -190,11 +193,11 @@ namespace Food_Market_BE.Modules.OrderModule.Services.Implementations
             var order = await _orderRepository.GetByIdAsync(orderId);
 
             if (order == null)
-                throw new Exception("Order not found.");
+                throw new InvalidOperationException("Order not found.");
 
             // In a real implementation, verify that the seller owns the products in this order
             if (!IsValidStatusTransition(order.Status, newStatus))
-                throw new Exception($"Cannot change status from '{order.Status}' to '{newStatus}'.");
+                throw new InvalidOperationException($"Cannot change status from '{order.Status}' to '{newStatus}'.");
 
             order.Status = newStatus;
             order.UpdatedAt = DateTime.UtcNow;

@@ -101,12 +101,26 @@ namespace Food_Market_BE.Modules.AuthModule.Services.Implementations
 
             var user = await _userRepo.GetByIdAsync(token.UserId);
 
+            // rotate refresh token: revoke old and issue a new one
             var access = _jwt.GenerateToken(user.Id, user.Email, user.Role);
+
+            var newRefresh = _token.Generate();
+
+            // create new refresh token record
+            await _refreshRepo.CreateAsync(new RefreshToken
+            {
+                UserId = user.Id,
+                Token = newRefresh,
+                ExpiresAt = DateTime.UtcNow.AddDays(7)
+            });
+
+            // revoke the previous refresh token
+            await _refreshRepo.RevokeAsync(refreshToken);
 
             return new AuthResponse
             {
                 AccessToken = access,
-                RefreshToken = refreshToken,
+                RefreshToken = newRefresh,
                 User = new { user.Id, user.Username, user.Email, user.Role }
             };
         }

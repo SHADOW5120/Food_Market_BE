@@ -17,24 +17,41 @@ namespace Food_Market_BE.Modules.AuthModule.Helpers
 
         public string GenerateToken(string userId, string email, string role)
         {
-            var claims = new[]
+            var keyString = _config["Jwt:Key"];
+            if (string.IsNullOrWhiteSpace(keyString))
+                throw new InvalidOperationException("JWT key is not configured.");
+
+            var keyBytes = Encoding.UTF8.GetBytes(keyString);
+            if (keyBytes.Length < 32)
+                throw new InvalidOperationException("JWT key is too short; it must be at least 256 bits (32 bytes).");
+
+            var now = DateTime.UtcNow;
+
+            var claims = new List<Claim>
             {
-            new Claim(ClaimTypes.NameIdentifier, userId),
-            new Claim(ClaimTypes.Email, email),
-            new Claim(ClaimTypes.Role, role)
-        };
+                new Claim(JwtRegisteredClaimNames.Sub, userId),
+                new Claim(JwtRegisteredClaimNames.Email, email),
+                new Claim(ClaimTypes.Role, role),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Iat, new DateTimeOffset(now).ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64)
+            };
 
-            var key = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(_config["Jwt:Key"])
-            );
-
+            var key = new SymmetricSecurityKey(keyBytes);
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            int expireMinutes = 15;
+            if (!string.IsNullOrWhiteSpace(_config["Jwt:ExpireMinutes"]) &&
+                int.TryParse(_config["Jwt:ExpireMinutes"], out var parsed))
+            {
+                expireMinutes = parsed;
+            }
 
             var token = new JwtSecurityToken(
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(15),
+                notBefore: now,
+                expires: now.AddMinutes(expireMinutes),
                 signingCredentials: creds
             );
 

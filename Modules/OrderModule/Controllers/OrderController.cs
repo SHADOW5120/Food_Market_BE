@@ -21,6 +21,8 @@ namespace Food_Market_BE.Modules.OrderModule.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var userId = GetUserId();
             var result = await _orderService.CreateOrderAsync(request, userId);
             return Ok(result);
@@ -58,6 +60,8 @@ namespace Food_Market_BE.Modules.OrderModule.Controllers
         [Authorize(Roles = UserRole.Seller)]
         public async Task<IActionResult> UpdateOrderStatus(string id, [FromBody] UpdateOrderStatusRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var success = await _orderService.UpdateOrderStatusAsync(id, request.NewStatus);
             return Ok(new { updated = success });
         }
@@ -103,6 +107,8 @@ namespace Food_Market_BE.Modules.OrderModule.Controllers
     string id,
     [FromBody] UpdateOrderStatusRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var sellerId = GetUserId();
 
             var result =
@@ -123,7 +129,7 @@ namespace Food_Market_BE.Modules.OrderModule.Controllers
         {
             return User.FindFirstValue(ClaimTypes.NameIdentifier)
                    ?? User.FindFirstValue("id")
-                   ?? throw new Exception("UserId not found in token.");
+                       ?? throw new UnauthorizedAccessException("UserId not found in token.");
         }
 
 

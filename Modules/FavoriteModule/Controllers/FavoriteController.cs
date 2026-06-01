@@ -28,6 +28,8 @@ namespace Food_Market_BE.Modules.FavoriteModule.Controllers
         [HttpPost]
         public async Task<IActionResult> AddFavorite([FromBody] AddToFavoriteRequest request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             var userId = GetUserId();
             var result = await _favoriteService.AddToFavoritesAsync(userId, request.ProductId);
             return Ok(new { success = true, data = result });
@@ -43,9 +45,9 @@ namespace Food_Market_BE.Modules.FavoriteModule.Controllers
 
         private string GetUserId()
         {
-            return User.FindFirst(ClaimTypes.NameIdentifier)?.Value
-                   ?? User.FindFirst("sub")?.Value
-                   ?? throw new Exception("UserId not found in token.");
+                 return User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                     ?? User.FindFirst("sub")?.Value
+                     ?? throw new UnauthorizedAccessException("UserId not found in token.");
         }
     }
 

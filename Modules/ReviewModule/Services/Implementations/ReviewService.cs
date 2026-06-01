@@ -65,23 +65,25 @@ namespace Food_Market_BE.Modules.ReviewModule.Services.Implementations
 
         public async Task<ReviewItemDto> CreateReviewAsync(CreateReviewRequest request, string userId)
         {
+            if (request == null) throw new ArgumentNullException(nameof(request));
+
             if (string.IsNullOrWhiteSpace(request.ProductId))
-                throw new Exception("ProductId is required.");
+                throw new ArgumentException("ProductId is required.", nameof(request.ProductId));
 
             if (request.Rating < 1 || request.Rating > 5)
-                throw new Exception("Rating must be between 1 and 5.");
+                throw new ArgumentOutOfRangeException(nameof(request.Rating), "Rating must be between 1 and 5.");
 
             var existedReview = await _reviewRepository.GetUserReviewAsync(userId, request.ProductId);
             if (existedReview != null)
-                throw new Exception("You have already reviewed this product.");
+                throw new InvalidOperationException("You have already reviewed this product.");
 
             var productExists = await CheckProductExistsAsync(request.ProductId);
             if (!productExists)
-                throw new Exception("Product not found.");
+                throw new InvalidOperationException("Product not found.");
 
             var hasPurchased = await HasUserPurchasedProductAsync(userId, request.ProductId);
             if (!hasPurchased)
-                throw new Exception("You can only review products you have purchased.");
+                throw new InvalidOperationException("You can only review products you have purchased.");
 
             var review = new Review
             {
@@ -102,13 +104,15 @@ namespace Food_Market_BE.Modules.ReviewModule.Services.Implementations
         {
             var review = await _reviewRepository.GetReviewByIdAsync(reviewId);
             if (review == null)
-                throw new Exception("Review not found.");
+                throw new InvalidOperationException("Review not found.");
 
             if (review.UserId != userId)
-                throw new Exception("You are not allowed to update this review.");
+                throw new UnauthorizedAccessException("You are not allowed to update this review.");
+
+            if (request == null) throw new ArgumentNullException(nameof(request));
 
             if (request.Rating < 1 || request.Rating > 5)
-                throw new Exception("Rating must be between 1 and 5.");
+                throw new ArgumentOutOfRangeException(nameof(request.Rating), "Rating must be between 1 and 5.");
 
             review.Rating = request.Rating;
             review.Comment = request.Comment;
@@ -124,10 +128,10 @@ namespace Food_Market_BE.Modules.ReviewModule.Services.Implementations
         {
             var review = await _reviewRepository.GetReviewByIdAsync(reviewId);
             if (review == null)
-                throw new Exception("Review not found.");
+                throw new InvalidOperationException("Review not found.");
 
             if (review.UserId != userId)
-                throw new Exception("You are not allowed to delete this review.");
+                throw new UnauthorizedAccessException("You are not allowed to delete this review.");
 
             await _reviewRepository.DeleteReviewAsync(reviewId);
             return true;

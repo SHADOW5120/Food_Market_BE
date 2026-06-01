@@ -7,13 +7,13 @@ namespace Food_Market_BE.Modules.UserProfileModule.Services.Implementations
         public async Task<string> UploadAsync(IFormFile file)
         {
             if (file == null || file.Length == 0)
-                throw new Exception("File is empty");
+                throw new ArgumentException("File is empty", nameof(file));
 
             var allowed = new[] { ".jpg", ".jpeg", ".png", ".webp" };
             var extension = Path.GetExtension(file.FileName).ToLower();
 
             if (!allowed.Contains(extension))
-                throw new Exception("Only image allowed");
+                throw new ArgumentException("Only image files are allowed", nameof(file));
 
             var rootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
 
@@ -30,7 +30,8 @@ namespace Food_Market_BE.Modules.UserProfileModule.Services.Implementations
                 await file.CopyToAsync(stream);
             }
 
-            return $"https://localhost:7225/uploads/{fileName}";
+            // Return a relative path so the caller can compose the full URL (avoids hardcoded host).
+            return $"/uploads/{fileName}";
         }
 
         public async Task DeleteAsync(string fileUrl)
