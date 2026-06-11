@@ -1,7 +1,28 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\modules\\authmodule\\models\\passwordresettoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\authmodule\\models\\passwordresettoken.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\modules\\authmodule\\helpers\\jwthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\authmodule\\helpers\\jwthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\shared\\extensions\\jwtextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:shared\\extensions\\jwtextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|e:\\school\\cnwebvakddt\\foodmarket\\food_market_be\\modules\\sellermodule\\controllers\\sellercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\sellermodule\\controllers\\sellercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +30,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAAAGoAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-10T15:22:12.219Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
@@ -22,6 +56,55 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PasswordResetToken.cs",
+              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\AuthModule\\Models\\PasswordResetToken.cs",
+              "RelativeDocumentMoniker": "Modules\\AuthModule\\Models\\PasswordResetToken.cs",
+              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\AuthModule\\Models\\PasswordResetToken.cs",
+              "RelativeToolTip": "Modules\\AuthModule\\Models\\PasswordResetToken.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T15:44:09.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "JwtHelper.cs",
+              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\AuthModule\\Helpers\\JwtHelper.cs",
+              "RelativeDocumentMoniker": "Modules\\AuthModule\\Helpers\\JwtHelper.cs",
+              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\AuthModule\\Helpers\\JwtHelper.cs",
+              "RelativeToolTip": "Modules\\AuthModule\\Helpers\\JwtHelper.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAQwD0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T15:43:29.872Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "JwtExtensions.cs",
+              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Shared\\Extensions\\JwtExtensions.cs",
+              "RelativeDocumentMoniker": "Shared\\Extensions\\JwtExtensions.cs",
+              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Shared\\Extensions\\JwtExtensions.cs",
+              "RelativeToolTip": "Shared\\Extensions\\JwtExtensions.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T15:37:33.963Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SellerController.cs",
+              "DocumentMoniker": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\SellerModule\\Controllers\\SellerController.cs",
+              "RelativeDocumentMoniker": "Modules\\SellerModule\\Controllers\\SellerController.cs",
+              "ToolTip": "E:\\School\\CNWebVaKDDT\\FoodMarket\\Food_Market_BE\\Modules\\SellerModule\\Controllers\\SellerController.cs",
+              "RelativeToolTip": "Modules\\SellerModule\\Controllers\\SellerController.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAQwLAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-09T15:34:43.391Z"
             }
           ]
         }

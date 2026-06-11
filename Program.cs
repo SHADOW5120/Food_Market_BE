@@ -27,6 +27,10 @@ using Food_Market_BE.Modules.ReviewModule.Repositories.Implementations;
 using Food_Market_BE.Modules.ReviewModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.ReviewModule.Services.Implementations;
 using Food_Market_BE.Modules.ReviewModule.Services.Interfaces;
+using Food_Market_BE.Modules.SellerModule.Repositories.Implementations;
+using Food_Market_BE.Modules.SellerModule.Repositories.Interfaces;
+using Food_Market_BE.Modules.SellerModule.Services.Implementations;
+using Food_Market_BE.Modules.SellerModule.Services.Interfaces;
 using Food_Market_BE.Modules.StoreModule.Repositories.Implementations;
 using Food_Market_BE.Modules.StoreModule.Repositories.Interfaces;
 using Food_Market_BE.Modules.StoreModule.Services.Implementations;
@@ -101,6 +105,10 @@ builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 // Voucher
 builder.Services.AddScoped<IVoucherRepository, VoucherRepository>();
 builder.Services.AddScoped<IVoucherService, VoucherService>();
+
+// Seller
+builder.Services.AddScoped<ISellerService, SellerService>();
+builder.Services.AddScoped<ISellerRepository, SellerRepository>();
 
 // Others
 
