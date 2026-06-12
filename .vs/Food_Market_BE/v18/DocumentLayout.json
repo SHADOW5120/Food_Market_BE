@@ -3,16 +3,68 @@
   "WorkspaceRootPath": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\shared\\seeder\\dataseeder\\cartseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:shared\\seeder\\dataseeder\\cartseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\shared\\seeder\\controllers\\systemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:shared\\seeder\\controllers\\systemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\shared\\seeder\\dataseeder\\reviewseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:shared\\seeder\\dataseeder\\reviewseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\shared\\seeder\\dataseeder\\voucherseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:shared\\seeder\\dataseeder\\voucherseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\productmodule\\services\\implementations\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\productmodule\\services\\implementations\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\storemodule\\services\\implementations\\storeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\storemodule\\services\\implementations\\storeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\shared\\seeder\\dataseeder\\storeseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:shared\\seeder\\dataseeder\\storeseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\shared\\seeder\\dataseeder\\productseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:shared\\seeder\\dataseeder\\productseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\shared\\seeder\\dataseeder\\orderseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:shared\\seeder\\dataseeder\\orderseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\shared\\seeder\\dataseeder\\favoriteseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:shared\\seeder\\dataseeder\\favoriteseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\shared\\seeder\\dataseeder\\categoryseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:shared\\seeder\\dataseeder\\categoryseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\productmodule\\repositories\\interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\productmodule\\repositories\\interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\sellermodule\\repositories\\implementations\\sellerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\sellermodule\\repositories\\implementations\\sellerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\sellermodule\\services\\implementations\\sellerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\sellermodule\\services\\implementations\\sellerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\sellermodule\\controllers\\sellercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\sellermodule\\controllers\\sellercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\storemodule\\services\\implementations\\storeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\storemodule\\services\\implementations\\storeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\storemodule\\repositories\\interfaces\\istorerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,20 +87,8 @@
       "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\storemodule\\dtos\\pagedstoreresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\sellermodule\\repositories\\implementations\\sellerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\sellermodule\\repositories\\implementations\\sellerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\sellermodule\\controllers\\sellercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\sellermodule\\controllers\\sellercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\productmodule\\dtos\\product\\getproductquerydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\productmodule\\dtos\\product\\getproductquerydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\sellermodule\\services\\implementations\\sellerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|solutionrelative:modules\\sellermodule\\services\\implementations\\sellerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{29C4810F-FE9C-4975-B294-13C8F7BC8485}|Food_Market_BE.csproj|c:\\my folder\\school\\commerce web\\food_market_be\\modules\\sellermodule\\services\\interfaces\\isellerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -78,17 +118,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 16,
               "Title": "IStoreRepository.cs",
               "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\Repositories\\Interfaces\\IStoreRepository.cs",
               "RelativeDocumentMoniker": "Modules\\StoreModule\\Repositories\\Interfaces\\IStoreRepository.cs",
               "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\Repositories\\Interfaces\\IStoreRepository.cs",
               "RelativeToolTip": "Modules\\StoreModule\\Repositories\\Interfaces\\IStoreRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-22T09:13:58.364Z",
               "IsPinned": true,
@@ -96,13 +136,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
               "Title": "IProductRepository.cs",
               "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\Repositories\\Interfaces\\IProductRepository.cs",
               "RelativeDocumentMoniker": "Modules\\ProductModule\\Repositories\\Interfaces\\IProductRepository.cs",
               "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\Repositories\\Interfaces\\IProductRepository.cs",
               "RelativeToolTip": "Modules\\ProductModule\\Repositories\\Interfaces\\IProductRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-22T09:22:04.045Z",
               "IsPinned": true,
@@ -110,197 +150,145 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "StoreService.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\Services\\Implementations\\StoreService.cs",
-              "RelativeDocumentMoniker": "Modules\\StoreModule\\Services\\Implementations\\StoreService.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\Services\\Implementations\\StoreService.cs",
-              "RelativeToolTip": "Modules\\StoreModule\\Services\\Implementations\\StoreService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "ReviewSeeder.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\ReviewSeeder.cs",
+              "RelativeDocumentMoniker": "Shared\\Seeder\\DataSeeder\\ReviewSeeder.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\ReviewSeeder.cs",
+              "RelativeToolTip": "Shared\\Seeder\\DataSeeder\\ReviewSeeder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T09:25:51.269Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProductRepository.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\Repositories\\Implementations\\ProductRepository.cs",
-              "RelativeDocumentMoniker": "Modules\\ProductModule\\Repositories\\Implementations\\ProductRepository.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\Repositories\\Implementations\\ProductRepository.cs",
-              "RelativeToolTip": "Modules\\ProductModule\\Repositories\\Implementations\\ProductRepository.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T09:21:56.357Z",
+              "WhenOpened": "2026-06-12T09:32:17.064Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "PagedStoreResponse.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\DTOs\\PagedStoreResponse.cs",
-              "RelativeDocumentMoniker": "Modules\\StoreModule\\DTOs\\PagedStoreResponse.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\DTOs\\PagedStoreResponse.cs",
-              "RelativeToolTip": "Modules\\StoreModule\\DTOs\\PagedStoreResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAjAAAAAAAAAA==",
+              "Title": "ProductSeeder.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\ProductSeeder.cs",
+              "RelativeDocumentMoniker": "Shared\\Seeder\\DataSeeder\\ProductSeeder.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\ProductSeeder.cs",
+              "RelativeToolTip": "Shared\\Seeder\\DataSeeder\\ProductSeeder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T09:20:46.206Z",
+              "WhenOpened": "2026-06-12T09:29:09.992Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "StoreRepository.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\Repositories\\Implementations\\StoreRepository.cs",
-              "RelativeDocumentMoniker": "Modules\\StoreModule\\Repositories\\Implementations\\StoreRepository.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\Repositories\\Implementations\\StoreRepository.cs",
-              "RelativeToolTip": "Modules\\StoreModule\\Repositories\\Implementations\\StoreRepository.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAACAAAABDAAAAAAAAAA==",
+              "Title": "StoreSeeder.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\StoreSeeder.cs",
+              "RelativeDocumentMoniker": "Shared\\Seeder\\DataSeeder\\StoreSeeder.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\StoreSeeder.cs",
+              "RelativeToolTip": "Shared\\Seeder\\DataSeeder\\StoreSeeder.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAgwAgAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T09:15:03.384Z",
+              "WhenOpened": "2026-06-12T09:28:01.871Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "VoucherSeeder.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\VoucherSeeder.cs",
+              "RelativeDocumentMoniker": "Shared\\Seeder\\DataSeeder\\VoucherSeeder.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\VoucherSeeder.cs",
+              "RelativeToolTip": "Shared\\Seeder\\DataSeeder\\VoucherSeeder.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAASwBgAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T09:25:21.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAAwHgAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T09:34:09.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ProductService.cs",
               "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\Services\\Implementations\\ProductService.cs",
               "RelativeDocumentMoniker": "Modules\\ProductModule\\Services\\Implementations\\ProductService.cs",
               "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\Services\\Implementations\\ProductService.cs",
               "RelativeToolTip": "Modules\\ProductModule\\Services\\Implementations\\ProductService.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEABAAAAAAAAAIA5wFoBAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-22T09:04:42.049Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IProductService.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\Services\\Interfaces\\IProductService.cs",
-              "RelativeDocumentMoniker": "Modules\\ProductModule\\Services\\Interfaces\\IProductService.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\Services\\Interfaces\\IProductService.cs",
-              "RelativeToolTip": "Modules\\ProductModule\\Services\\Interfaces\\IProductService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAABFAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "SystemController.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\Controllers\\SystemController.cs",
+              "RelativeDocumentMoniker": "Shared\\Seeder\\Controllers\\SystemController.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\Controllers\\SystemController.cs",
+              "RelativeToolTip": "Shared\\Seeder\\Controllers\\SystemController.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAYwEEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T09:03:52.414Z",
+              "WhenOpened": "2026-06-12T09:08:19.808Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "SellerController.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Controllers\\SellerController.cs",
-              "RelativeDocumentMoniker": "Modules\\SellerModule\\Controllers\\SellerController.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Controllers\\SellerController.cs",
-              "RelativeToolTip": "Modules\\SellerModule\\Controllers\\SellerController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "CartSeeder.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\CartSeeder.cs",
+              "RelativeDocumentMoniker": "Shared\\Seeder\\DataSeeder\\CartSeeder.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\CartSeeder.cs",
+              "RelativeToolTip": "Shared\\Seeder\\DataSeeder\\CartSeeder.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAgwDEAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T09:02:00.102Z",
+              "WhenOpened": "2026-06-12T09:30:38.837Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "SellerRepository.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Repositories\\Implementations\\SellerRepository.cs",
-              "RelativeDocumentMoniker": "Modules\\SellerModule\\Repositories\\Implementations\\SellerRepository.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Repositories\\Implementations\\SellerRepository.cs",
-              "RelativeToolTip": "Modules\\SellerModule\\Repositories\\Implementations\\SellerRepository.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAD4AAAAxAAAAAAAAAA==",
+              "Title": "OrderSeeder.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\OrderSeeder.cs",
+              "RelativeDocumentMoniker": "Shared\\Seeder\\DataSeeder\\OrderSeeder.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\OrderSeeder.cs",
+              "RelativeToolTip": "Shared\\Seeder\\DataSeeder\\OrderSeeder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T08:57:41.517Z",
+              "WhenOpened": "2026-06-12T09:31:45.271Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "StoreDto.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\DTOs\\StoreDto.cs",
-              "RelativeDocumentMoniker": "Modules\\StoreModule\\DTOs\\StoreDto.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\DTOs\\StoreDto.cs",
-              "RelativeToolTip": "Modules\\StoreModule\\DTOs\\StoreDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABEAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "FavoriteSeeder.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\FavoriteSeeder.cs",
+              "RelativeDocumentMoniker": "Shared\\Seeder\\DataSeeder\\FavoriteSeeder.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\FavoriteSeeder.cs",
+              "RelativeToolTip": "Shared\\Seeder\\DataSeeder\\FavoriteSeeder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T08:53:15.13Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "StoreResponse.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\DTOs\\StoreResponse.cs",
-              "RelativeDocumentMoniker": "Modules\\StoreModule\\DTOs\\StoreResponse.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\DTOs\\StoreResponse.cs",
-              "RelativeToolTip": "Modules\\StoreModule\\DTOs\\StoreResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T08:49:14.577Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "SellerService.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Services\\Implementations\\SellerService.cs",
-              "RelativeDocumentMoniker": "Modules\\SellerModule\\Services\\Implementations\\SellerService.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Services\\Implementations\\SellerService.cs",
-              "RelativeToolTip": "Modules\\SellerModule\\Services\\Implementations\\SellerService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T08:42:34.346Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "PagedOrderResponse.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\OrderModule\\DTOs\\PagedOrderResponse.cs",
-              "RelativeDocumentMoniker": "Modules\\OrderModule\\DTOs\\PagedOrderResponse.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\OrderModule\\DTOs\\PagedOrderResponse.cs",
-              "RelativeToolTip": "Modules\\OrderModule\\DTOs\\PagedOrderResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T08:34:16.135Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ISellerService.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Services\\Interfaces\\ISellerService.cs",
-              "RelativeDocumentMoniker": "Modules\\SellerModule\\Services\\Interfaces\\ISellerService.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Services\\Interfaces\\ISellerService.cs",
-              "RelativeToolTip": "Modules\\SellerModule\\Services\\Interfaces\\ISellerService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T05:01:40.25Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "ISellerRepository.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Repositories\\Interfaces\\ISellerRepository.cs",
-              "RelativeDocumentMoniker": "Modules\\SellerModule\\Repositories\\Interfaces\\ISellerRepository.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Repositories\\Interfaces\\ISellerRepository.cs",
-              "RelativeToolTip": "Modules\\SellerModule\\Repositories\\Interfaces\\ISellerRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T05:02:15.667Z",
+              "WhenOpened": "2026-06-12T09:31:15.558Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "GetProductQueryDto.cs",
-              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\DTOs\\Product\\GetProductQueryDto.cs",
-              "RelativeDocumentMoniker": "Modules\\ProductModule\\DTOs\\Product\\GetProductQueryDto.cs",
-              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\DTOs\\Product\\GetProductQueryDto.cs",
-              "RelativeToolTip": "Modules\\ProductModule\\DTOs\\Product\\GetProductQueryDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "CategorySeeder.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\CategorySeeder.cs",
+              "RelativeDocumentMoniker": "Shared\\Seeder\\DataSeeder\\CategorySeeder.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Shared\\Seeder\\DataSeeder\\CategorySeeder.cs",
+              "RelativeToolTip": "Shared\\Seeder\\DataSeeder\\CategorySeeder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-22T03:42:31.389Z",
+              "WhenOpened": "2026-06-12T09:23:35.583Z",
               "EditorCaption": ""
             },
             {
@@ -318,6 +306,188 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "SellerRepository.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Repositories\\Implementations\\SellerRepository.cs",
+              "RelativeDocumentMoniker": "Modules\\SellerModule\\Repositories\\Implementations\\SellerRepository.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Repositories\\Implementations\\SellerRepository.cs",
+              "RelativeToolTip": "Modules\\SellerModule\\Repositories\\Implementations\\SellerRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T08:57:41.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "SellerService.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Services\\Implementations\\SellerService.cs",
+              "RelativeDocumentMoniker": "Modules\\SellerModule\\Services\\Implementations\\SellerService.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Services\\Implementations\\SellerService.cs",
+              "RelativeToolTip": "Modules\\SellerModule\\Services\\Implementations\\SellerService.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAAAHQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T08:42:34.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SellerController.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Controllers\\SellerController.cs",
+              "RelativeDocumentMoniker": "Modules\\SellerModule\\Controllers\\SellerController.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Controllers\\SellerController.cs",
+              "RelativeToolTip": "Modules\\SellerModule\\Controllers\\SellerController.cs",
+              "ViewState": "AgIAAJEAAAAAAAAAAAAswLAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T09:02:00.102Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "StoreService.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\Services\\Implementations\\StoreService.cs",
+              "RelativeDocumentMoniker": "Modules\\StoreModule\\Services\\Implementations\\StoreService.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\Services\\Implementations\\StoreService.cs",
+              "RelativeToolTip": "Modules\\StoreModule\\Services\\Implementations\\StoreService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T09:25:51.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\Repositories\\Implementations\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "Modules\\ProductModule\\Repositories\\Implementations\\ProductRepository.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\Repositories\\Implementations\\ProductRepository.cs",
+              "RelativeToolTip": "Modules\\ProductModule\\Repositories\\Implementations\\ProductRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T09:21:56.357Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "PagedStoreResponse.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\DTOs\\PagedStoreResponse.cs",
+              "RelativeDocumentMoniker": "Modules\\StoreModule\\DTOs\\PagedStoreResponse.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\DTOs\\PagedStoreResponse.cs",
+              "RelativeToolTip": "Modules\\StoreModule\\DTOs\\PagedStoreResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T09:20:46.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "StoreRepository.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\Repositories\\Implementations\\StoreRepository.cs",
+              "RelativeDocumentMoniker": "Modules\\StoreModule\\Repositories\\Implementations\\StoreRepository.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\Repositories\\Implementations\\StoreRepository.cs",
+              "RelativeToolTip": "Modules\\StoreModule\\Repositories\\Implementations\\StoreRepository.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAIBJwCAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T09:15:03.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IProductService.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\Services\\Interfaces\\IProductService.cs",
+              "RelativeDocumentMoniker": "Modules\\ProductModule\\Services\\Interfaces\\IProductService.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\Services\\Interfaces\\IProductService.cs",
+              "RelativeToolTip": "Modules\\ProductModule\\Services\\Interfaces\\IProductService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwAkAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T09:03:52.414Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "StoreDto.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\DTOs\\StoreDto.cs",
+              "RelativeDocumentMoniker": "Modules\\StoreModule\\DTOs\\StoreDto.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\DTOs\\StoreDto.cs",
+              "RelativeToolTip": "Modules\\StoreModule\\DTOs\\StoreDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T08:53:15.13Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "StoreResponse.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\DTOs\\StoreResponse.cs",
+              "RelativeDocumentMoniker": "Modules\\StoreModule\\DTOs\\StoreResponse.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\StoreModule\\DTOs\\StoreResponse.cs",
+              "RelativeToolTip": "Modules\\StoreModule\\DTOs\\StoreResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T08:49:14.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "PagedOrderResponse.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\OrderModule\\DTOs\\PagedOrderResponse.cs",
+              "RelativeDocumentMoniker": "Modules\\OrderModule\\DTOs\\PagedOrderResponse.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\OrderModule\\DTOs\\PagedOrderResponse.cs",
+              "RelativeToolTip": "Modules\\OrderModule\\DTOs\\PagedOrderResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T08:34:16.135Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ISellerService.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Services\\Interfaces\\ISellerService.cs",
+              "RelativeDocumentMoniker": "Modules\\SellerModule\\Services\\Interfaces\\ISellerService.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Services\\Interfaces\\ISellerService.cs",
+              "RelativeToolTip": "Modules\\SellerModule\\Services\\Interfaces\\ISellerService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T05:01:40.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ISellerRepository.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Repositories\\Interfaces\\ISellerRepository.cs",
+              "RelativeDocumentMoniker": "Modules\\SellerModule\\Repositories\\Interfaces\\ISellerRepository.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\SellerModule\\Repositories\\Interfaces\\ISellerRepository.cs",
+              "RelativeToolTip": "Modules\\SellerModule\\Repositories\\Interfaces\\ISellerRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T05:02:15.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "GetProductQueryDto.cs",
+              "DocumentMoniker": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\DTOs\\Product\\GetProductQueryDto.cs",
+              "RelativeDocumentMoniker": "Modules\\ProductModule\\DTOs\\Product\\GetProductQueryDto.cs",
+              "ToolTip": "C:\\My Folder\\School\\Commerce Web\\Food_Market_BE\\Modules\\ProductModule\\DTOs\\Product\\GetProductQueryDto.cs",
+              "RelativeToolTip": "Modules\\ProductModule\\DTOs\\Product\\GetProductQueryDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T03:42:31.389Z",
+              "EditorCaption": ""
             }
           ]
         }

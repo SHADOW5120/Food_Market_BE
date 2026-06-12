@@ -47,6 +47,8 @@ using Food_Market_BE.Modules.VoucherModule.Services.Interfaces;
 using Food_Market_BE.Shared.Database;
 using Food_Market_BE.Shared.Extensions;
 using Food_Market_BE.Shared.Middleware;
+using Food_Market_BE.Shared.Seeder.DataSeeder;
+using Food_Market_BE.Shared.Seeder.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -109,6 +111,16 @@ builder.Services.AddScoped<IVoucherService, VoucherService>();
 // Seller
 builder.Services.AddScoped<ISellerService, SellerService>();
 builder.Services.AddScoped<ISellerRepository, SellerRepository>();
+
+// Seeder
+builder.Services.AddScoped<IDataSeeder, CategorySeeder>();
+builder.Services.AddScoped<IDataSeeder, VoucherSeeder>();
+builder.Services.AddScoped<IDataSeeder, StoreSeeder>();
+builder.Services.AddScoped<IDataSeeder, ProductSeeder>();
+builder.Services.AddScoped<IDataSeeder, CartSeeder>();
+builder.Services.AddScoped<IDataSeeder, FavoriteSeeder>();
+builder.Services.AddScoped<IDataSeeder, OrderSeeder>();
+builder.Services.AddScoped<IDataSeeder, ReviewSeeder>();
 
 // Others
 

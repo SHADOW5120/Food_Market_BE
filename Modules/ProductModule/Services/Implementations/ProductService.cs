@@ -330,9 +330,9 @@ namespace Food_Market_BE.Modules.ProductModule.Services.Implementations
             if (option == null)
                 return false;
 
-            product.Options.Remove(option);
+            product?.Options?.Remove(option);
 
-            await _productRepository.UpdateAsync(product);
+            await _productRepository.UpdateAsync(product!);
 
             return true;
         }
