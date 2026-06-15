@@ -1,5 +1,7 @@
 ﻿using Bogus;
+using Food_Market_BE.Modules.AuthModule.Models;
 using Food_Market_BE.Modules.CartModule.Models;
+using Food_Market_BE.Shared.Database;
 using Food_Market_BE.Shared.Seeder.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -8,57 +10,113 @@ namespace Food_Market_BE.Shared.Seeder.DataSeeder
 {
     public class CartSeeder : IDataSeeder
     {
-        private readonly IMongoDatabase _database;
+        private readonly MongoDbContext _database;
         private readonly IMongoCollection<Cart> _cartCollection;
 
-        public CartSeeder(IMongoDatabase database)
+        public CartSeeder(MongoDbContext database)
         {
             _database = database;
-            // Giả sử collection của bạn tên là CartItems hoặc Carts
-            _cartCollection = database.GetCollection<Cart>("Cart");
+            _cartCollection = database.GetCollection<Cart>("Carts");
         }
 
-        // Ưu tiên 5: Phải có Sản phẩm và User thì mới cho vào giỏ được
         public int Priority => 5;
 
         public async Task SeedAsync()
         {
-            if (await _cartCollection.CountDocumentsAsync(FilterDefinition<Cart>.Empty) > 0) return;
+            if (await _cartCollection.CountDocumentsAsync(FilterDefinition<Cart>.Empty) > 0)
+                return;
 
-            Console.WriteLine("[CartModule] Đang lấy ID User và Product để tạo Giỏ hàng...");
+            Console.WriteLine("[CartSeeder] Fetching Users and Products...");
 
-            // 1. Lấy danh sách AccountId là "User" (Khách hàng)
-            var accountCollection = _database.GetCollection<BsonDocument>("Accounts");
-            var userIds = await accountCollection
-                .Find(Builders<BsonDocument>.Filter.Eq("Role", "User"))
-                .Project(b => b["_id"].ToString())
-                .ToListAsync();
-
-            // 2. Lấy danh sách ProductId đang bán
+            var userCollection = _database.GetCollection<BsonDocument>("Users");
             var productCollection = _database.GetCollection<BsonDocument>("Products");
-            var productIds = await productCollection
-                .Find(new BsonDocument())
-                .Project(b => b["_id"].ToString())
+
+            // -----------------------------
+            // 1. GET USERS (safe)
+            // -----------------------------
+            var userDocs = await userCollection
+                .Find(Builders<BsonDocument>.Filter.Eq("Role", UserRole.User))
                 .ToListAsync();
 
-            if (!userIds.Any() || !productIds.Any())
+            var userIds = userDocs
+                .Select(x => x["_id"].ToString())
+                .ToList();
+
+            // -----------------------------
+            // 2. GET PRODUCTS (safe raw BSON)
+            // -----------------------------
+            var productDocs = await productCollection
+                .Find(new BsonDocument())
+                .ToListAsync();
+
+            var products = productDocs.Select(x => new
             {
-                Console.WriteLine("[CartModule] Thiếu User hoặc Product. Bỏ qua tạo Giỏ hàng.");
+                Id = x["_id"].ToString(),
+                Name = x.GetValue("Name", "").AsString,
+                Price = x.GetValue("Price", 0).ToDouble(),
+
+                Images = x.Contains("Images")
+                    ? x["Images"].AsBsonArray.Select(i => i.ToString()).ToList()
+                    : new List<string>()
+            }).ToList();
+
+            // -----------------------------
+            // 3. VALIDATION
+            // -----------------------------
+            if (!userIds.Any() || !products.Any())
+            {
+                Console.WriteLine("[CartSeeder] Missing Users or Products. Skip seeding.");
                 return;
             }
 
-            // 3. Sinh dữ liệu: Chọn ngẫu nhiên user và product bỏ vào giỏ
-            int totalCartItems = Random.Shared.Next(500, 1000);
-            var faker = new Faker<Cart>("vi")
-                .RuleFor(c => c.UserId, f => f.PickRandom(userIds))
-                .RuleFor(c => c.ProductId, f => f.PickRandom(productIds))
-                .RuleFor(c => c.Quantity, f => f.Random.Int(1, 5)) // Mua từ 1 đến 5 sản phẩm
-                .RuleFor(c => c.AddedAt, f => f.Date.Recent(15)); // Thêm vào giỏ trong 15 ngày gần đây
+            Console.WriteLine($"[CartSeeder] Users: {userIds.Count}, Products: {products.Count}");
 
-            var fakeCartItems = faker.Generate(totalCartItems);
+            var faker = new Faker("en");
+            var carts = new List<Cart>();
 
-            await _cartCollection.InsertManyAsync(fakeCartItems);
-            Console.WriteLine($"[CartModule] Đã tạo thành công {totalCartItems} sản phẩm trong các Giỏ hàng!");
+            int totalCarts = Random.Shared.Next(200, 400);
+
+            // -----------------------------
+            // 4. GENERATE CARTS
+            // -----------------------------
+            for (int i = 0; i < totalCarts; i++)
+            {
+                var userId = faker.PickRandom(userIds);
+                var itemCount = faker.Random.Int(1, 5);
+                var chosenProducts = faker.PickRandom(products, itemCount).ToList();
+
+                var items = chosenProducts.Select(p =>
+                {
+                    var qty = faker.Random.Int(1, 5);
+
+                    return new CartItem
+                    {
+                        Id = ObjectId.GenerateNewId().ToString(),
+                        ProductId = p.Id,
+                        ProductName = p.Name,
+                        ProductImage = p.Images.FirstOrDefault(),
+                        Price = 100,
+                        Quantity = qty,
+                        Options = new List<CartItemOpt>(),
+                        Subtotal = 200,
+                        CreatedAt = faker.Date.Recent(30)
+                    };
+                }).ToList();
+
+                carts.Add(new Cart
+                {
+                    Id = ObjectId.GenerateNewId().ToString(),
+                    UserId = userId,
+                    Items = items,
+                    TotalPrice = items.Sum(x => x.Subtotal),
+                    CreatedAt = faker.Date.Recent(30),
+                    UpdatedAt = DateTime.UtcNow
+                });
+            }
+
+            await _cartCollection.InsertManyAsync(carts);
+
+            Console.WriteLine($"[CartSeeder] Created {carts.Count} carts successfully.");
         }
     }
 }

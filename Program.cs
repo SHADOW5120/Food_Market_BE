@@ -112,7 +112,7 @@ builder.Services.AddScoped<IVoucherService, VoucherService>();
 builder.Services.AddScoped<ISellerService, SellerService>();
 builder.Services.AddScoped<ISellerRepository, SellerRepository>();
 
-// Seeder
+//// Seeder
 builder.Services.AddScoped<IDataSeeder, CategorySeeder>();
 builder.Services.AddScoped<IDataSeeder, VoucherSeeder>();
 builder.Services.AddScoped<IDataSeeder, StoreSeeder>();

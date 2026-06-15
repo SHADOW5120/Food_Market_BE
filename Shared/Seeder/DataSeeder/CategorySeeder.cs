@@ -1,4 +1,5 @@
 ﻿using Food_Market_BE.Modules.CategoryModule.Models;
+using Food_Market_BE.Shared.Database;
 using Food_Market_BE.Shared.Seeder.Interfaces;
 using MongoDB.Driver;
 
@@ -8,7 +9,7 @@ namespace Food_Market_BE.Shared.Seeder.DataSeeder
     {
         private readonly IMongoCollection<Category> _categoryCollection;
 
-        public CategorySeeder(IMongoDatabase database)
+        public CategorySeeder(MongoDbContext database)
         {
             _categoryCollection = database.GetCollection<Category>("Categories");
         }

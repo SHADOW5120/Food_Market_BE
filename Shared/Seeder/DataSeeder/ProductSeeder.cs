@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using Food_Market_BE.Modules.ProductModule.Models.Media;
 using Food_Market_BE.Modules.ProductModule.Models.Product;
+using Food_Market_BE.Shared.Database;
 using Food_Market_BE.Shared.Seeder.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -9,10 +10,10 @@ namespace Food_Market_BE.Shared.Seeder.DataSeeder
 {
     public class ProductSeeder : IDataSeeder
     {
-        private readonly IMongoDatabase _database;
+        private readonly MongoDbContext _database;
         private readonly IMongoCollection<Product> _productCollection;
 
-        public ProductSeeder(IMongoDatabase database)
+        public ProductSeeder(MongoDbContext database)
         {
             _database = database;
             _productCollection = database.GetCollection<Product>("Products");
@@ -61,9 +62,23 @@ namespace Food_Market_BE.Shared.Seeder.DataSeeder
                 .RuleFor(p => p.Popularity, f => f.Random.Int(10, 1000))
                 .RuleFor(p => p.Images, f => new List<ProductImg>
                 {
-                    f.Image.PicsumUrl(),
-                    f.Image.PicsumUrl()
-                }) // Random 2 link ảnh minh họa
+                    new ProductImg
+                    {
+                        Id = ObjectId.GenerateNewId().ToString(),
+                        FoodId = ObjectId.GenerateNewId().ToString(),
+                        ImageUrl = f.Image.PicsumUrl(),
+                        IsPrimary = true,
+                        CreatedAt = f.Date.Past()
+                    },
+                    new ProductImg
+                    {
+                        Id = ObjectId.GenerateNewId().ToString(),
+                        FoodId = ObjectId.GenerateNewId().ToString(),
+                        ImageUrl = f.Image.PicsumUrl(),
+                        IsPrimary = false,
+                        CreatedAt = f.Date.Past()
+                    }
+                }) // Random 2 ảnh minh họa
                 .RuleFor(p => p.CreatedAt, f => f.Date.Past(1));
 
             var fakeProducts = faker.Generate(totalProducts);
