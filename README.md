@@ -21,7 +21,7 @@ The system manages 15 tightly integrated and normalized tables:
 *   `POST /api/auth/register`: Handle account registration.
 *   `POST /api/auth/login`: Authenticate credentials and issue JWT Access Token.
 *   `PUT /api/users/profile`: Update personal information and Avatar.
-`...`
+*   `...`
 
 ### 2. Buyer Module
 *   `GET /api/products`: Retrieve product list (with filtering, pagination, and search).
@@ -29,10 +29,10 @@ The system manages 15 tightly integrated and normalized tables:
 *   `POST /api/orders`: Process checkout requests, validate vouchers, and create invoices.
 *   `GET /api/orders/history`: Retrieve the user's order history.
 *   `POST /api/favorites`: Toggle product favorite status.
-`...`
+*   `...`
 
 ### 3. Seller Module
 *   `GET /api/seller/dashboard`: Provide aggregated data for charting (revenue, order count, average rating).
 *   `POST /api/seller/products`: Create new dishes (supports image uploads via `multipart/form-data`).
 *   `PUT /api/seller/orders/{id}/status`: Process order status updates (Pending -> Confirmed -> Delivering -> Completed).
-`...`
+*   `...`
